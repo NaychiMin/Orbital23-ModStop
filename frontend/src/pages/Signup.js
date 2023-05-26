@@ -7,7 +7,7 @@ const Signup = () => {
   const [username, setUsername] = useState('')
   const [course, setCourse] = useState('')
   const {signup, error, isLoading} = useSignup()
-  const [values,setValues]=useState(["","ceg","cs"])
+  const [values,setValues]=useState(["","Computer Engineering","Electrical Engineering","Mechanical Engineering", "Engineering Science"])
 
 
   console.log(values)
@@ -44,6 +44,7 @@ const Signup = () => {
           values.map((major,i)=><option>{major}</option>)
         }
       </select>
+
 
       <label>Password:</label>
       <input 

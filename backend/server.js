@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
-const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
 
 //express app
@@ -18,7 +17,6 @@ app.use((req, res, next)=>{
 })
 
 //routes
-app.use('/api/workouts',workoutRoutes) //grabs all of the different routes attached to the router in 'workout.js' and uses it on the app
 app.use('/api/user',userRoutes)
 
 //connect to db
