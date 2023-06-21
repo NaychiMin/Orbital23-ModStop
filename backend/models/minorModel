@@ -1,0 +1,16 @@
+const mongoose = require('mongoose')
+
+const Schema = mongoose.Schema
+
+const minorSchema = new Schema({
+    minor: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    courses: {
+        type: Array
+    }
+})
+
+module.exports = mongoose.model('Minors', minorSchema)

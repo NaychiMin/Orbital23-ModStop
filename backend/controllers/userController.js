@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+const Minor = require('../models/minorModel')
 const jwt = require('jsonwebtoken')
 
 const createToken = (_id) => {
@@ -44,4 +45,15 @@ const signupUser = async (req, res) => {
 
 }
 
-module.exports = {signupUser, loginUser}
+//get minors
+const getMinors = async (req, res) => {
+    const minors = await Minor.find()
+    if (!minors) {
+        res.json({mssg: 'no minors'})
+    }
+    else {
+        res.status(200).json(minors)
+    }
+}
+
+module.exports = {signupUser, loginUser, getMinors}

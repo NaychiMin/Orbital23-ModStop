@@ -142,3 +142,15 @@ form.signup, form.login {
 .hello {
   text-align: center;
 }
+
+/* tabs under recommended schedule */
+.tabs {
+  display: inline-block;
+  max-width: 400px;
+  margin: 10px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
