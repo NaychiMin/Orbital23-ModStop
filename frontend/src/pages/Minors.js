@@ -1,6 +1,7 @@
 import RecSch from "../components/RecSch";
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 
 const Minors = () => {
@@ -33,8 +34,10 @@ const Minors = () => {
                 {minors && minors.map(minor => {
                         if (minor.courses.includes(userCourse)){
                             return (
-                                <div className="tabs">
-                                    <h3>{minor.minor}</h3>
+                                <div className="tabs" key={minor._id}>
+                                    <Link to={`/minors/${minor._id}`}>
+                                        <h3>{minor.minor}</h3>
+                                    </Link>
                                 </div>
                             )
                         }

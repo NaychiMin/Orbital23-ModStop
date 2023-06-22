@@ -9,7 +9,16 @@ const minorSchema = new Schema({
         unique: true
     },
     courses: {
-        type: Array
+        type: Array,
+        required: true
+    },
+    cores: {
+        type: Array,
+        required: true
+    },
+    electives: {
+        type: Array,
+        required: true
     }
 })
 

@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Minors from './pages/Minors';
+import MinorDetails from './pages/MinorDetails';
 
 function App() {
   const {user} = useAuthContext()
@@ -28,6 +29,10 @@ function App() {
             <Route
               path = "/signup"
               element={!user ? <Signup /> : <Navigate to="/"/>}
+            />
+            <Route
+              path = "/minors/:id"
+              element={user ? <MinorDetails /> : <Navigate to="/"/>}
             />
             <Route
               path = "/minors"

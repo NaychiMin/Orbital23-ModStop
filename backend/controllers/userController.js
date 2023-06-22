@@ -1,6 +1,7 @@
 const User = require('../models/userModel')
 const Minor = require('../models/minorModel')
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, {expiresIn: '3d'})
@@ -56,4 +57,21 @@ const getMinors = async (req, res) => {
     }
 }
 
-module.exports = {signupUser, loginUser, getMinors}
+//get minor modules
+const getModules = async (req, res) => {
+    const { id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such minor'})
+    }
+
+    const minor = await Minor.findById(id)
+
+    if(!minor) {
+        return res.status(404).json({error: 'No such minor'})
+    }
+
+    res.status(200).json(minor)
+}
+
+module.exports = {signupUser, loginUser, getMinors, getModules}
