@@ -26,6 +26,7 @@ const MinorDetails = () => {
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     <h3 className="tabs">{modules.minor}</h3>
                 </div>
+                <p style={{textAlign: 'center'}}>{modules.details}</p>
                 <h3 style={{textAlign: 'center'}}>Core Modules</h3>
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     {modules.cores.map(module => {
@@ -36,7 +37,7 @@ const MinorDetails = () => {
                         )
                     })}
                 </div> 
-                {modules.electives.length > 1 && (<h3 style={{textAlign: 'center'}}>Electives (take at least 1)</h3>)}
+                {modules.electives.length > 1 && (<h3 style={{textAlign: 'center'}}>Electives</h3>)}
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     {modules.electives.length > 1 && modules.electives.map(module => {
                         return (

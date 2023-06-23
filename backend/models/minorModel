@@ -19,6 +19,9 @@ const minorSchema = new Schema({
     electives: {
         type: Array,
         required: true
+    },
+    details: {
+        type: String
     }
 })
 
