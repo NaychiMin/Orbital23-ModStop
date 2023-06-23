@@ -7,6 +7,18 @@ const MinorDetails = () => {
 
     const {id} = useParams()
     const [modules, setModules] = useState(null)
+    const [coreMods, setCoreMods] = useState(null)
+
+    const fetchModInfo = () => {
+        fetch('/api/user/module', {
+            method: "GET"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data, "moduleData")
+            setCoreMods(data)
+        })
+    }
 
     useEffect( () => {
         fetch('/api/user/minors/' + id, {
@@ -15,11 +27,23 @@ const MinorDetails = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data, "userData")
-            setModules(data)        
+            setModules(data) 
+            fetchModInfo()   
         })
     }, [])
+
+    const getPreReq = modCode => {
+        let preReqs
+        coreMods.forEach(mod => {
+            if (mod.code === modCode) {
+                preReqs = mod.prerequisites
+                console.log(preReqs)
+            }
+        })
+        return preReqs
+    }
     
-    if(modules) {
+    if(modules && coreMods) {
         return (
             <div>
                 <RecSch/>
@@ -28,11 +52,19 @@ const MinorDetails = () => {
                 </div>
                 <p style={{textAlign: 'center'}}>{modules.details}</p>
                 <h3 style={{textAlign: 'center'}}>Core Modules</h3>
-                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
+                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top'}}>
                     {modules.cores.map(module => {
+                        let preReqs = getPreReq(module)
                         return (
-                            <div className="tabs">
-                                <h3>{module}</h3>
+                            <div>
+                                <div className="tabs">
+                                    <h3>{module}</h3>
+                                </div>
+                                <div>
+                                    {preReqs && preReqs.map(preReq => (
+                                        <p style={{textAlign: 'center'}}>{preReq}</p>
+                                    ))}
+                                </div>
                             </div>
                         )
                     })}
@@ -54,7 +86,7 @@ const MinorDetails = () => {
         return(
             <div>
                 <RecSch/>
-                <h3>modules not a thing</h3>
+                <h3>Modules loading...</h3>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 const express = require('express')
 
 //controller functions
-const {signupUser, loginUser, getMinors, getModules} = require('../controllers/userController')
+const {signupUser, loginUser, getMinors, getModules, getModuleInfo} = require('../controllers/userController')
 
 const router = express.Router() 
 
@@ -16,5 +16,8 @@ router.get('/minors', getMinors)
 
 //get minor modules
 router.get('/minors/:id', getModules)
+
+//get module info
+router.get('/module', getModuleInfo)
 
 module.exports = router

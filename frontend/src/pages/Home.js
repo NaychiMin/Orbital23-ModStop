@@ -19,12 +19,12 @@ const Home = () => {
                     </div>
                 </Link>
                 
-                <div className="tabs">
+                {/* <div className="tabs">
                     <h3>Majors</h3>
                 </div>
-                { /*<div className="tabs">
+                <div className="tabs">
                     <h2>Semesters</h2>
-                </div> */}      
+                </div>        */}
             </div>
         </div>
     )

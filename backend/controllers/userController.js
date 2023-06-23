@@ -1,5 +1,6 @@
 const User = require('../models/userModel')
 const Minor = require('../models/minorModel')
+const Module = require('../models/moduleModel')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
@@ -74,4 +75,15 @@ const getModules = async (req, res) => {
     res.status(200).json(minor)
 }
 
-module.exports = {signupUser, loginUser, getMinors, getModules}
+//get module info
+const getModuleInfo = async (req, res) => {
+    //const { code } = req.params
+    //const module = await Module.findOne({'code': code})
+    const module = await Module.find()
+    if(!module) {
+        return res.status(404).json({error: 'No such module'})
+    }
+    res.status(200).json(module)
+}
+
+module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo}
