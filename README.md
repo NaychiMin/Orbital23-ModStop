@@ -1,5 +1,4 @@
 # Orbital23-ModStop
----
 ## Cloning the Repository
 | Step | Instruction |
 | ------ | ------ |
