@@ -55,15 +55,21 @@ const MinorDetails = () => {
                 <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top'}}>
                     {modules.cores.map(module => {
                         let preReqs = getPreReq(module)
+                        let empty
+                        if (modules.cores.length <= 1) {
+                            empty = "Cores not added yet"
+                        }
                         return (
                             <div>
                                 <div className="tabs">
                                     <h3>{module}</h3>
+                                    <p>{empty}</p>
                                 </div>
                                 <div>
                                     {preReqs && preReqs.map(preReq => (
                                         <p style={{textAlign: 'center'}}>{preReq}</p>
                                     ))}
+                                    {!preReqs && !empty && <p style={{textAlign: 'center'}}>Not added yet</p>}
                                 </div>
                             </div>
                         )
