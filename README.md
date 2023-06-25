@@ -7,3 +7,5 @@ How to build:
 4. ```cd frontend```
 5. ```npm install```
 6. ```npm start```
+   ![image](https://github.com/NaychiMin/Orbital23-ModStop/assets/79958806/c6b8aec7-3fef-42ff-88ea-eb96df9a50c9)
+
