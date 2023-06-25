@@ -7,8 +7,8 @@ const Signup = () => {
   const [username, setUsername] = useState('')
   const [course, setCourse] = useState('')
   const {signup, error, isLoading} = useSignup()
-  const [values,setValues]=useState(["","Computer Engineering","Electrical Engineering","Mechanical Engineering", "Engineering Science"])
-
+  const [values,setValues]=useState(["","Computer Engineering","Electrical Engineering"]) //,"Mechanical Engineering", "Engineering Science"])
+  const [track, setTrack] = useState("Non Polytechnic")
 
   console.log(values)
 
@@ -17,7 +17,7 @@ const Signup = () => {
     e.preventDefault()
     //setCourse('ceg')
 
-    await signup(email, password, username, course)
+    await signup(email, password, username, course, track)
   }
 
   return (
@@ -44,6 +44,15 @@ const Signup = () => {
           values.map((major,i)=><option>{major}</option>)
         }
       </select>
+
+      <label>Track:</label>
+      <select
+          value={track}
+          onChange={(e) => setTrack(e.target.value)}
+        >
+          <option value="Non Polytechnic">Non Polytechnic</option>
+          <option value="Polytechnic">Polytechnic</option>
+        </select>
 
 
       <label>Password:</label>

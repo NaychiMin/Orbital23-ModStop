@@ -1,6 +1,7 @@
 const User = require('../models/userModel')
 const Minor = require('../models/minorModel')
 const Module = require('../models/moduleModel')
+const Timetable = require('../models/timetableModel')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
@@ -32,15 +33,15 @@ const loginUser = async (req, res) => {
 
 //sign up user
 const signupUser = async (req, res) => {
-    const {email, password, username, course} = req.body
+    const {email, password, username, course, track} = req.body
 
     try{
-        const user = await User.signup(email, password, username, course)
+        const user = await User.signup(email, password, username, course, track)
 
         //create a token
         const token = createToken(user._id)
 
-        res.status(200).json({email, token, username, course})
+        res.status(200).json({email, token, username, course, track})
     } catch(error) {
         res.status(400).json({error: error.message})
     }
@@ -77,8 +78,6 @@ const getModules = async (req, res) => {
 
 //get module info
 const getModuleInfo = async (req, res) => {
-    //const { code } = req.params
-    //const module = await Module.findOne({'code': code})
     const module = await Module.find()
     if(!module) {
         return res.status(404).json({error: 'No such module'})
@@ -86,4 +85,14 @@ const getModuleInfo = async (req, res) => {
     res.status(200).json(module)
 }
 
-module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo}
+//get timetable
+const getTimetable = async (req, res) => {
+    const course = req.user.course
+    const timetable = await Timetable.find({"course" : course})
+    if(!timetable) {
+        return res.status(404).json({error: 'No timetables'})
+    }
+    res.status(200).json(timetable)
+}
+
+module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo, getTimetable}

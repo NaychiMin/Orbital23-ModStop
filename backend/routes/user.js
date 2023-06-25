@@ -1,7 +1,7 @@
 const express = require('express')
 
 //controller functions
-const {signupUser, loginUser, getMinors, getModules, getModuleInfo} = require('../controllers/userController')
+const {signupUser, loginUser, getMinors, getModules, getModuleInfo, getTimetable} = require('../controllers/userController')
 
 const router = express.Router() 
 
@@ -19,5 +19,8 @@ router.get('/minors/:id', getModules)
 
 //get module info
 router.get('/module', getModuleInfo)
+
+//get timetable
+router.get('/timetable', getTimetable)
 
 module.exports = router
