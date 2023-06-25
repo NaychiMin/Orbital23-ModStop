@@ -1,7 +1,7 @@
 # Orbital23-ModStop
 
 How to build:
-| Step | README |
+| Step | |
 | ------ | ------ |
 | 1 | Visit the GitHub link, download the zip folder and unzip it to your desired folder |
 | 2 | Open the folder ‘Orbital23-ModStop-main’ using your desired editor such as VSC|
