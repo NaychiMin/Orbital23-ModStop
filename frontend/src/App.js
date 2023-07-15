@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Minors from './pages/Minors';
 import MinorDetails from './pages/MinorDetails';
+import Majors from './pages/Majors';
 
 function App() {
   const {user} = useAuthContext()
@@ -37,6 +38,10 @@ function App() {
             <Route
               path = "/minors"
               element={user ? <Minors /> : <Navigate to="/"/>}
+            />
+            <Route
+              path = "/majors"
+              element={user ? <Majors /> : <Navigate to="/"/>}
             />
           </Routes>
         </div>

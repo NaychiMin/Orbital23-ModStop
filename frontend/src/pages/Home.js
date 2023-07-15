@@ -18,11 +18,14 @@ const Home = () => {
                         <h3>Minors</h3>
                     </div>
                 </Link>
-                
-                <div className="tabs">
-                    <h3>Majors</h3>
-                    <p>(not implemented yet)</p>
-                </div>
+
+                <Link to="/majors">
+                    <div className="tabs">
+                        <h3>Majors</h3>
+                        <p>implementing...</p>
+                    </div>
+                </Link>
+
                 <div className="tabs">
                     <h3>Semesters</h3>
                     <p>(not implemented yet)</p>

@@ -30,7 +30,7 @@ const Minors = () => {
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                 <h2 className="tabs">Minors</h2>
             </div>   
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none', flexWrap:'wrap'}}>
                 {minors && minors.map(minor => {
                         if (minor.courses.includes(userCourse)){
                             return (

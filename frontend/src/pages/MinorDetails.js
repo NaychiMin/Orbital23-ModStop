@@ -52,7 +52,7 @@ const MinorDetails = () => {
                 </div>
                 <p style={{textAlign: 'center'}}>{modules.details}</p>
                 <h3 style={{textAlign: 'center'}}>Core Modules</h3>
-                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top'}}>
+                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top', flexWrap:'wrap'}}>
                     {modules.cores.map(module => {
                         let preReqs = getPreReq(module)
                         let empty
