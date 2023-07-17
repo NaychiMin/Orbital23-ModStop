@@ -42,6 +42,10 @@ const MinorDetails = () => {
         })
         return preReqs
     }
+
+    const handleDragEnd = event => {
+        
+    }
     
     if(modules && coreMods) {
         return (
@@ -60,7 +64,9 @@ const MinorDetails = () => {
                             empty = "Cores not added yet"
                         }
                         return (
-                            <div>
+                            <div
+                            draggable
+                            onDragEnd={this.handleDragEnd}>
                                 <div className="tabs">
                                     <h3>{module}</h3>
                                     <p>{empty}</p>
