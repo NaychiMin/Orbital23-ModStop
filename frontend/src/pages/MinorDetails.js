@@ -8,6 +8,8 @@ const MinorDetails = () => {
     const {id} = useParams()
     const [modules, setModules] = useState(null)
     const [coreMods, setCoreMods] = useState(null)
+    let dragMods = []
+    let isDroppedOnRecSch = false;
 
     const fetchModInfo = () => {
         fetch('/api/user/module', {
@@ -44,13 +46,31 @@ const MinorDetails = () => {
     }
 
     const handleDragEnd = event => {
-        
+        console.log("dropped")
+        if (isDroppedOnRecSch) {
+            console.log("dropped in recsch")
+            isDroppedOnRecSch = false;
+            const draggableText = event.dataTransfer.getData('text/html')
+            dragMods = draggableText.split('\n\n')
+            console.log(dragMods)
+        }
+    }
+    
+    const handleDragOver = event => {
+        console.log("dragged over recsch")
+        isDroppedOnRecSch = true
+    }
+
+    const handleDragStart = event => {
+        event.dataTransfer.setData('text/html', event.target.innerText);
     }
     
     if(modules && coreMods) {
         return (
             <div>
-                <RecSch/>
+                <div onDragOver={handleDragOver}>
+                    <RecSch />
+                </div>
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     <h3 className="tabs">{modules.minor}</h3>
                 </div>
@@ -66,7 +86,8 @@ const MinorDetails = () => {
                         return (
                             <div
                             draggable
-                            onDragEnd={this.handleDragEnd}>
+                            onDragEnd={handleDragEnd}
+                            onDragStart={handleDragStart}>
                                 <div className="tabs">
                                     <h3>{module}</h3>
                                     <p>{empty}</p>
