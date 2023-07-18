@@ -2,7 +2,6 @@ const User = require('../models/userModel')
 const Minor = require('../models/minorModel')
 const Module = require('../models/moduleModel')
 const Major = require('../models/majorModel')
-const Timetable = require('../models/timetableModel')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
@@ -97,14 +96,4 @@ const getMajors = async (req, res) => {
     }
 }
 
-//get timetable
-const getTimetable = async (req, res) => {
-    const course = req.user.course
-    const timetable = await Timetable.find({"course" : course})
-    if(!timetable) {
-        return res.status(404).json({error: 'No timetables'})
-    }
-    res.status(200).json(timetable)
-}
-
-module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo, getTimetable, getMajors}
+module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo, getMajors}
