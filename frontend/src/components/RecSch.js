@@ -1,13 +1,15 @@
 import { useAuthContext } from "../hooks/useAuthContext";
-import React, { useRef, useState, useEffect} from 'react';
+import React, { useRef, useState, useEffect, useContext} from 'react';
 import { isEqual } from 'lodash';
 import { useLocation } from 'react-router-dom';
+import { ThemeContext } from "../context/recContext";
 
-const RecSch = (props) => {
+const RecSch = () => {
     const { user } = useAuthContext();
     const email = user.email
     const containerRef = useRef(null);
-    const [changed, setChanged] = useState()
+    const {changed, setChanged} = useContext(ThemeContext);
+    //const [changed, setChanged] = useState(ThemeContext);
     const [sem1, setSem1] = useState(null)
     const [sem2, setSem2] = useState(null)
     const [sem3, setSem3] = useState(null)
@@ -102,16 +104,9 @@ const RecSch = (props) => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email, draggableText, draggedBox, droppedBox })
                 })
-        setChanged(Math.random());
+        setChanged(!changed);
         console.log(location.pathname.startsWith('/minors'))
     };
-
-    // let originalPropsMessage;
-    // if(location.pathname.startsWith('/minors')&&props.message!=originalPropsMessage){
-    //     console.log(true)
-    //     setChanged(props.message)
-    //     originalPropsMessage=props.message
-    // }
     
 
     return (
@@ -120,7 +115,6 @@ const RecSch = (props) => {
                 <button className="pre-btn" onClick={handlePreviousClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
                 <button className="nxt-btn" onClick={handleNextClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
                 <div ref={containerRef} className="product-container">
-                    <h1>props: {props.message}</h1>
                     <div className="product-card">
                         sem 1
                         <ul>
@@ -219,6 +213,7 @@ const RecSch = (props) => {
                     </div>
                 </div>
             </section>
+
         </>
         
     );

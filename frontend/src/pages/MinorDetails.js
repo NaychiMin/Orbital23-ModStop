@@ -1,28 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
 import RecSch from '../components/RecSch'
 import { Link, useParams, useLocation } from "react-router-dom"
 import { useNavigate } from 'react-router'
+import { ThemeContext } from "../context/recContext"
 
 
 
 const MinorDetails = () => {
 
     const {id} = useParams()
+    const { changed, setChanged } = useContext(ThemeContext);
     const [modules, setModules] = useState(null)
     const [coreMods, setCoreMods] = useState(null)
     let dragMods = []
     const { user } = useAuthContext();
     const email = user.email
-
-    const [sem1, setSem1] = useState(null)
-    const [sem2, setSem2] = useState(null)
-    const [sem3, setSem3] = useState(null)
-    const [sem4, setSem4] = useState(null)
-    const [sem5, setSem5] = useState(null)
-    const [sem6, setSem6] = useState(null)
-    const [sem7, setSem7] = useState(null)
-    const [sem8, setSem8] = useState(null)
 
     const fetchModInfo = () => {
         fetch('/api/user/module', {
@@ -88,8 +81,6 @@ const MinorDetails = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    let changed;
-
     const handleDragEnd = async event => {
         dragMods = draggableText.split('\n\n')
         console.log(dragMods)
@@ -102,8 +93,8 @@ const MinorDetails = () => {
             })
         // window.location.reload(true)
         //navigate(location.pathname)
-         changed = Math.random()
-         console.log(changed)
+        setChanged(!changed);
+        // console.log(changed)
     }
 
 
@@ -112,7 +103,7 @@ const MinorDetails = () => {
         return (
             <div>
                 <div>
-                    <RecSch message={changed}/>
+                    <RecSch/>
                 </div>
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     <h3 className="tabs">{modules.minor}</h3>

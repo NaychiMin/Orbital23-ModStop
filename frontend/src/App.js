@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Minors from './pages/Minors';
 import MinorDetails from './pages/MinorDetails';
 import Majors from './pages/Majors';
+import { ThemeProvider } from './context/recContext';
 
 function App() {
   const {user} = useAuthContext()
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        <ThemeProvider>
         <div className="pages">
           <Routes>
 
@@ -46,6 +48,7 @@ function App() {
             />
           </Routes>
         </div>
+        </ThemeProvider>
       </BrowserRouter>
      
     </div>
