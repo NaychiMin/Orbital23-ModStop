@@ -1,5 +1,6 @@
 const User = require('../models/userModel')
 const Minor = require('../models/minorModel')
+const Major = require('../models/majorModel')
 const Module = require('../models/moduleModel')
 const recSched = require('../models/recSched')
 const jwt = require('jsonwebtoken')
@@ -73,7 +74,7 @@ const getMinors = async (req, res) => {
 }
 
 //get minor modules
-const getModules = async (req, res) => {
+const getMinorModules = async (req, res) => {
     const { id } = req.params
 
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -87,6 +88,34 @@ const getModules = async (req, res) => {
     }
 
     res.status(200).json(minor)
+}
+
+//get major
+const getMajors = async (req, res) => {
+    const major = await Major.find()
+    if (!major) {
+        res.json({mssg: 'no majors'})
+    }
+    else {
+        res.status(200).json(major)
+    }
+}
+
+//get major modules
+const getMajorModules = async (req, res) => {
+    const { id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No such major'})
+    }
+
+    const major = await Major.findById(id)
+
+    if(!major) {
+        return res.status(404).json({error: 'No such major'})
+    }
+
+    res.status(200).json(major)
 }
 
 //get module info
@@ -139,4 +168,4 @@ const updateRecSchedExtra = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
-module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo, createRecSched, getRecSched, updateRecSched, updateRecSchedExtra}
+module.exports = {signupUser, loginUser, getMinors, getMinorModules, getMajors, getMajorModules, getModuleInfo, createRecSched, getRecSched, updateRecSched, updateRecSchedExtra}

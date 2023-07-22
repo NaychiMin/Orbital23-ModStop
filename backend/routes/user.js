@@ -1,7 +1,7 @@
 const express = require('express')
 
 //controller functions
-const {signupUser, createRecSched, loginUser, getMinors, getModules, getModuleInfo, getRecSched, updateRecSched, updateRecSchedExtra} = require('../controllers/userController')
+const {signupUser, createRecSched, loginUser, getMinors, getMinorModules, getMajors, getMajorModules, getModuleInfo, getRecSched, updateRecSched, updateRecSchedExtra} = require('../controllers/userController')
 
 const router = express.Router() 
 
@@ -18,7 +18,13 @@ router.post('/signupsched', createRecSched) //sending data to server, hence the 
 router.get('/minors', getMinors)
 
 //get minor modules
-router.get('/minors/:id', getModules)
+router.get('/minors/:id', getMinorModules)
+
+//get major route
+router.get('/majors', getMajors)
+
+//get major modules
+router.get('/majors/:id', getMajorModules)
 
 //get module info
 router.get('/module', getModuleInfo)

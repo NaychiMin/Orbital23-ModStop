@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Minors from './pages/Minors';
 import MinorDetails from './pages/MinorDetails';
 import Majors from './pages/Majors';
+import MajorDetails from './pages/MajorDetails';
 import { ThemeProvider } from './context/recContext';
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
             <Route
               path = "/minors"
               element={user ? <Minors /> : <Navigate to="/"/>}
+            />
+            <Route
+              path = "/majors/:id"
+              element={user ? <MajorDetails /> : <Navigate to="/"/>}
             />
             <Route
               path = "/majors"
