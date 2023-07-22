@@ -17,11 +17,19 @@ export const useSignup = () => {
     })
     const json = await response.json()
 
-    if (!response.ok) {
+    const response1 = await fetch('/api/user/signupsched', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, course, track })
+    })
+    //const json1 = await response1.json()
+
+    if (!response.ok || !response1.ok) {
       setIsLoading(false)
       setError(json.error)
     }
-    if (response.ok) {
+
+    if (response.ok && response1.ok) {
       // save the user to local storage
       localStorage.setItem('user', JSON.stringify(json))
 
@@ -32,6 +40,7 @@ export const useSignup = () => {
       setIsLoading(false)
     }
   }
+
 
   return { signup, isLoading, error }
 }
