@@ -113,7 +113,6 @@ const getRecSched = async (req, res) => {
 //update database for recommended schedule
 const updateRecSched = async (req, res) => {
     const {email, draggableText, draggedBox, droppedBox} = req.body
-    //console.log(email, draggableText, draggedBox[4], droppedBox[4])
 
     try{
         console.log('trying')
@@ -124,4 +123,20 @@ const updateRecSched = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
-module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo, createRecSched, getRecSched, updateRecSched}
+
+//update database for recommended schedule minors/major
+const updateRecSchedExtra = async (req, res) => {
+    console.log("hello")
+    const {email, dragMods, droppedBox} = req.body
+    console.log(dragMods)
+
+    try{
+        console.log('trying')
+        await recSched.updateRecSchedsExtra(email, dragMods, droppedBox);
+        console.log('success')
+        res.status(200).json({dragMods, dragMods, droppedBox})
+    } catch(error) {
+        res.status(400).json({error: error.message})
+    }
+}
+module.exports = {signupUser, loginUser, getMinors, getModules, getModuleInfo, createRecSched, getRecSched, updateRecSched, updateRecSchedExtra}

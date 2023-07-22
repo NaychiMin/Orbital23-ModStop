@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
 import RecSch from '../components/RecSch'
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useLocation } from "react-router-dom"
+import { useNavigate } from 'react-router'
+
+
 
 const MinorDetails = () => {
 
@@ -9,7 +12,17 @@ const MinorDetails = () => {
     const [modules, setModules] = useState(null)
     const [coreMods, setCoreMods] = useState(null)
     let dragMods = []
-    let isDroppedOnRecSch = false;
+    const { user } = useAuthContext();
+    const email = user.email
+
+    const [sem1, setSem1] = useState(null)
+    const [sem2, setSem2] = useState(null)
+    const [sem3, setSem3] = useState(null)
+    const [sem4, setSem4] = useState(null)
+    const [sem5, setSem5] = useState(null)
+    const [sem6, setSem6] = useState(null)
+    const [sem7, setSem7] = useState(null)
+    const [sem8, setSem8] = useState(null)
 
     const fetchModInfo = () => {
         fetch('/api/user/module', {
@@ -45,31 +58,61 @@ const MinorDetails = () => {
         return preReqs
     }
 
-    const handleDragEnd = event => {
-        console.log("dropped")
-        if (isDroppedOnRecSch) {
-            console.log("dropped in recsch")
-            isDroppedOnRecSch = false;
-            const draggableText = event.dataTransfer.getData('text/html')
-            dragMods = draggableText.split('\n\n')
-            console.log(dragMods)
-        }
-    }
-    
-    const handleDragOver = event => {
-        console.log("dragged over recsch")
-        isDroppedOnRecSch = true
-    }
+    const elements = document.querySelectorAll('.product-card');
+    let draggableText = null;
+    let droppedBox = 0;
+
+    elements.forEach(element => {
+
+        element.addEventListener('dragover', e => {
+            e.preventDefault();
+            element.classList.add('hovered');
+        });
+
+        element.addEventListener('dragleave', () => {
+            element.classList.remove('hovered');
+        });
+
+        element.addEventListener('drop', e => {
+            e.preventDefault();
+            element.classList.remove('hovered');
+            droppedBox = element.textContent.trim(); 
+        });
+    });
 
     const handleDragStart = event => {
-        event.dataTransfer.setData('text/html', event.target.innerText);
+        draggableText = event.target.innerText;
+
     }
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    let changed;
+
+    const handleDragEnd = async event => {
+        dragMods = draggableText.split('\n\n')
+        console.log(dragMods)
+        console.log('Dropped into:', droppedBox[4]);
+        droppedBox=`sem${droppedBox[4]}`
+        const response = await fetch('/api/user/updatescheduleextra', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ email, dragMods, droppedBox })
+            })
+        // window.location.reload(true)
+        //navigate(location.pathname)
+         changed = Math.random()
+         console.log(changed)
+    }
+
+
     
     if(modules && coreMods) {
         return (
             <div>
-                <div onDragOver={handleDragOver}>
-                    <RecSch />
+                <div>
+                    <RecSch message={changed}/>
                 </div>
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     <h3 className="tabs">{modules.minor}</h3>

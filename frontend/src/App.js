@@ -19,10 +19,7 @@ function App() {
         <Navbar />
         <div className="pages">
           <Routes>
-            <Route
-              path = "/"
-              element={user ? <Home /> : <Navigate to="/login"/>}
-            />
+
             <Route
               path = "/login"
               element={!user ? <Login /> : <Navigate to="/"/>}
@@ -42,6 +39,10 @@ function App() {
             <Route
               path = "/majors"
               element={user ? <Majors /> : <Navigate to="/"/>}
+            />
+            <Route
+              path = "/"
+              element={user ? <Home /> : <Navigate to="/login"/>}
             />
           </Routes>
         </div>

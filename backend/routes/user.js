@@ -1,7 +1,7 @@
 const express = require('express')
 
 //controller functions
-const {signupUser, createRecSched, loginUser, getMinors, getModules, getModuleInfo, getRecSched, updateRecSched} = require('../controllers/userController')
+const {signupUser, createRecSched, loginUser, getMinors, getModules, getModuleInfo, getRecSched, updateRecSched, updateRecSchedExtra} = require('../controllers/userController')
 
 const router = express.Router() 
 
@@ -29,5 +29,8 @@ router.get('/recommendedSchedule', getRecSched)
 
 //get updatesched
 router.post('/updateschedule', updateRecSched)
+
+//get updateschedextra
+router.post('/updatescheduleextra', updateRecSchedExtra)
 
 module.exports = router

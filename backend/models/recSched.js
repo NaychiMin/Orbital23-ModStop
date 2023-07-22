@@ -113,4 +113,28 @@ recSchedSchema.statics.updateRecScheds = async function (email, draggableText, d
     return record;
   };
 
+
+  recSchedSchema.statics.updateRecSchedsExtra = async function (email, dragMods, droppedBox) {
+    // Fetch the existing record using the email
+    const record = await this.findOne({ email });
+    const allSemesters = [
+        record.sem1, record.sem2, record.sem3, record.sem4,
+        record.sem5, record.sem6, record.sem7, record.sem8
+      ].flat();
+      console.log(allSemesters)
+      const result = dragMods.forEach((item) => {
+        if (allSemesters.includes(item)) {
+            const sourceIndex = dragMods.indexOf(item);
+            dragMods.splice(sourceIndex, 1);
+        }
+        
+      });
+      record[droppedBox] = record[droppedBox].concat(dragMods)
+        console.log('final dragmods:', dragMods)
+        console.log('record', record[droppedBox])
+
+     await record.save();
+  
+    return record;
+  };
 module.exports = mongoose.model('recSched', recSchedSchema)
