@@ -10,7 +10,7 @@ const app = express()
 //middleware
 app.use(express.json())
 
-//will fire everytime a request comes in
+//will fire everytime a new request comes in
 app.use((req, res, next)=>{
     console.log(req.path, req.method)
     next()
