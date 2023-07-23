@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "jsonwebtoken": "^9.0.0",
-    
     "validator": "^13.9.0"
+  },
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\""
   }
 }

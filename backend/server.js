@@ -4,12 +4,14 @@ console.log(process.env)
 const express = require('express')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user')
+const cors = require('cors')
 
 //express app
 const app = express()
 
 //middleware
 app.use(express.json())
+app.use(cors())
 
 //will fire everytime a new request comes in
 app.use((req, res, next)=>{
@@ -22,10 +24,7 @@ app.use((req, res, next)=>{
 app.use('/api/user', userRoutes)
 
 //connect to db
-mongoose.connect('mongodb+srv://user:user@modstop.vofxbj0.mongodb.net/?retryWrites=true&w=majority',{
-    useNewUrlParser:true, 
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
     .then((client)=>{
         //listen for request
         app.listen(process.env.PORT, ()=>{
