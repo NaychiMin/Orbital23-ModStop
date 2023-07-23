@@ -111,6 +111,7 @@ const RecSch = () => {
 
     return (
         <>
+            <div className="recSched">
             <section className="product" >
                 <button className="pre-btn" onClick={handlePreviousClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
                 <button className="nxt-btn" onClick={handleNextClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
@@ -212,8 +213,9 @@ const RecSch = () => {
                             </ul>
                     </div>
                 </div>
+                <span>hello</span>
             </section>
-
+            </div>
         </>
         
     );

@@ -157,6 +157,10 @@ form.signup, form.login {
 }
 
 /* PRODUCTS */
+.recSched{
+  position: flex;
+}
+
 .product {
   position: relative;
   overflow: hidden;
@@ -189,18 +193,6 @@ form.signup, form.login {
   flex: 0 0 auto;
   width: 450px;
   height: 250px;
-  margin-right: 40px;
-  background-color:#fff;
-  border-radius: 12px;
-  justify-content: center;
-  align-items: center;
-  display:flex;
-}
-
-.delete {
-  flex: 0 0 auto;
-  width: 200px;
-  height: 100px;
   margin-right: 40px;
   background-color:#fff;
   border-radius: 12px;
