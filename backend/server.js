@@ -1,4 +1,5 @@
 require('dotenv').config()
+console.log(process.env)
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -21,7 +22,10 @@ app.use((req, res, next)=>{
 app.use('/api/user', userRoutes)
 
 //connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect('mongodb+srv://user:user@modstop.vofxbj0.mongodb.net/?retryWrites=true&w=majority',{
+    useNewUrlParser:true, 
+    useUnifiedTopology: true,
+})
     .then((client)=>{
         //listen for request
         app.listen(process.env.PORT, ()=>{
