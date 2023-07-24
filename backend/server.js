@@ -12,7 +12,7 @@ const app = express()
 //middleware
 app.use(express.json())
 app.use(cors({
-    origin: 'https://modstopp.onrender.com/',
+    origin: 'hhttps://frontend-racu.onrender.com/',
     credentials: true, // Set this to true if you need to include cookies in your requests
   }));
 
