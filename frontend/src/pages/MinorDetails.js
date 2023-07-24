@@ -115,7 +115,7 @@ const MinorDetails = () => {
                         let preReqs = getPreReq(module)
                         let empty
                         if (modules.cores.length <= 1) {
-                            empty = "Cores not added yet"
+                            empty = "No Core Modules"
                         }
                         return (
                             <div
@@ -130,7 +130,6 @@ const MinorDetails = () => {
                                     {preReqs && preReqs.map(preReq => (
                                         <p style={{textAlign: 'center'}}>{preReq}</p>
                                     ))}
-                                    {!preReqs && !empty && <p style={{textAlign: 'center'}}>Not added yet</p>}
                                 </div>
                             </div>
                         )
@@ -139,9 +138,25 @@ const MinorDetails = () => {
                 {modules.electives.length > 1 && (<h3 style={{textAlign: 'center'}}>Electives</h3>)}
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
                     {modules.electives.length > 1 && modules.electives.map(module => {
+                        let preReqs = getPreReq(module)
+                        let empty
+                        if (modules.electives.length <= 1) {
+                            empty = "No Electives"
+                        }
                         return (
-                            <div className="tabs">
-                                <h3>{module}</h3>
+                            <div
+                            draggable
+                            onDragEnd={handleDragEnd}
+                            onDragStart={handleDragStart}>
+                                <div className="tabs">
+                                    <h3>{module}</h3>
+                                    <p>{empty}</p>
+                                </div>
+                                <div>
+                                    {preReqs && preReqs.map(preReq => (
+                                        <p style={{textAlign: 'center'}}>{preReq}</p>
+                                    ))}
+                                </div>
                             </div>
                         )
                     })}
