@@ -130,18 +130,33 @@ const MajorDetails = () => {
                                     {preReqs && preReqs.map(preReq => (
                                         <p style={{textAlign: 'center'}}>{preReq}</p>
                                     ))}
-                                    {!preReqs && !empty && <p style={{textAlign: 'center'}}>Not added yet</p>}
                                 </div>
                             </div>
                         )
                     })}
                 </div> 
                 {modules.electives.length > 1 && (<h3 style={{textAlign: 'center'}}>Electives</h3>)}
-                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
+                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top', flexWrap:'wrap'}}>
                     {modules.electives.length > 1 && modules.electives.map(module => {
+                        let preReqs = getPreReq(module)
+                        let empty
+                        if (modules.electives.length <= 1) {
+                            empty = "No Electives"
+                        }
                         return (
-                            <div className="tabs">
-                                <h3>{module}</h3>
+                            <div
+                            draggable
+                            onDragEnd={handleDragEnd}
+                            onDragStart={handleDragStart}>
+                                <div className="tabs">
+                                    <h3>{module}</h3>
+                                    <p>{empty}</p>
+                                </div>
+                                <div>
+                                    {preReqs && preReqs.map(preReq => (
+                                        <p style={{textAlign: 'center'}}>{preReq}</p>
+                                    ))}
+                                </div>
                             </div>
                         )
                     })}

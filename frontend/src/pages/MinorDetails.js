@@ -136,7 +136,7 @@ const MinorDetails = () => {
                     })}
                 </div> 
                 {modules.electives.length > 1 && (<h3 style={{textAlign: 'center'}}>Electives</h3>)}
-                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
+                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top', flexWrap:'wrap'}}>
                     {modules.electives.length > 1 && modules.electives.map(module => {
                         let preReqs = getPreReq(module)
                         let empty
