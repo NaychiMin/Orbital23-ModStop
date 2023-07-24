@@ -213,7 +213,6 @@ const RecSch = () => {
                             </ul>
                     </div>
                 </div>
-                <span>hello</span>
             </section>
             </div>
         </>

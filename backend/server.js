@@ -11,10 +11,7 @@ const app = express()
 
 //middleware
 app.use(express.json())
-app.use(cors({
-    origin: 'hhttps://frontend-racu.onrender.com/',
-    credentials: true, // Set this to true if you need to include cookies in your requests
-  }));
+app.use(cors());
 
 //will fire everytime a new request comes in
 app.use((req, res, next)=>{
