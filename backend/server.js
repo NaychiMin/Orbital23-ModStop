@@ -12,7 +12,7 @@ const app = express()
 //middleware
 app.use(express.json())
 app.use(cors({
-    origin: 'https://orbital23-mod-stop.vercel.app/',
+    origin: 'https://orbital23-mod-stop.vercel.app',
     credentials: true, // Set this to true if you need to include cookies in your requests
   }));
 
