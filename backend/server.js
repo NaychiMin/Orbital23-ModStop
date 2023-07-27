@@ -27,7 +27,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 //will fire everytime a new request comes in
 app.use((req, res, next)=>{
