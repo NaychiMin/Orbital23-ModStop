@@ -11,7 +11,23 @@ const app = express()
 
 //middleware
 app.use(express.json())
-app.use(cors());
+
+//cors
+const allowedOrigins = ['https://frontend-modstop.onrender.com/login'];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 //will fire everytime a new request comes in
 app.use((req, res, next)=>{
