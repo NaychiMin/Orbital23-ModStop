@@ -13,16 +13,17 @@ const app = express()
 app.use(express.json())
 
 //cors
-const allowedOrigins = ['https://frontend-modstop.onrender.com/', "http://localhost:3000/"];
+//const allowedOrigins = ['https://frontend-modstop.onrender.com/', "http://localhost:3000/"];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true,
+//   (origin, callback) => {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
   credentials: true,
   optionsSuccessStatus: 200,
 };
