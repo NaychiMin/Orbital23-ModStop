@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 
 //cors
-const allowedOrigins = ['https://frontend-modstop.onrender.com/login'];
+const allowedOrigins = ['https://frontend-modstop.onrender.com/login', "http://localhost:3000/"];
 
 const corsOptions = {
   origin: (origin, callback) => {
