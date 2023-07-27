@@ -16,7 +16,7 @@ app.use(express.json())
 //const allowedOrigins = ['https://frontend-modstop.onrender.com/', "http://localhost:3000/"];
 const isProduction = process.env.NODE_ENV === 'production';
 
-const allowedOrigins = isProduction ? ['https://your-production-frontend.com'] : true;
+const allowedOrigins = isProduction ? ['https://frontend-modstop.onrender.com/'] : true;
 
 
 const corsOptions = {
