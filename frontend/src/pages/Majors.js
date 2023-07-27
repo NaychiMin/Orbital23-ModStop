@@ -2,7 +2,7 @@ import RecSch from "../components/RecSch";
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
+import { URL } from '../App.js'
 
 const Majors = () => {
 
@@ -11,7 +11,7 @@ const Majors = () => {
     const [majors, setMajors] = useState()
 
     useEffect( () => {
-        fetch('/api/user/majors', {
+        fetch(`${URL}/api/user/majors`, {
             method: "GET"
         })
         .then(res => res.json())

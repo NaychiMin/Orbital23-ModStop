@@ -4,7 +4,7 @@ import RecSch from '../components/RecSch'
 import { Link, useParams, useLocation } from "react-router-dom"
 import { useNavigate } from 'react-router'
 import { ThemeContext } from "../context/recContext"
-
+import { URL } from '../App.js'
 
 
 const MajorDetails = () => {
@@ -18,7 +18,7 @@ const MajorDetails = () => {
     const email = user.email
 
     const fetchModInfo = () => {
-        fetch('/api/user/module', {
+        fetch(`${URL}/api/user/module`, {
             method: "GET"
         })
         .then(res => res.json())
@@ -29,7 +29,7 @@ const MajorDetails = () => {
     }
 
     useEffect( () => {
-        fetch('/api/user/majors/' + id, {
+        fetch(`${URL}/api/user/majors/` + id, {
             method: "GET"
         })
         .then(res => res.json())
@@ -86,7 +86,7 @@ const MajorDetails = () => {
         console.log(dragMods)
         console.log('Dropped into:', droppedBox[4]);
         droppedBox=`sem${droppedBox[4]}`
-        const response = await fetch('/api/user/updatescheduleextra', {
+        const response = await fetch(`${URL}/api/user/updatescheduleextra`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ email, dragMods, droppedBox })

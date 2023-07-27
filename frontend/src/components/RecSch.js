@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect, useContext} from 'react';
 import { isEqual } from 'lodash';
 import { useLocation } from 'react-router-dom';
 import { ThemeContext } from "../context/recContext";
+import { URL } from '../App.js'
 
 const RecSch = () => {
     const { user } = useAuthContext();
@@ -20,7 +21,7 @@ const RecSch = () => {
     const [sem8, setSem8] = useState(null)
 
     useEffect( () => {
-        fetch(`/api/user/recommendedSchedule?email=${email}`, {
+        fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
             method: "GET"
         })
         .then((res) => res.json())
@@ -99,7 +100,7 @@ const RecSch = () => {
         console.log('Dropped into:', droppedBox[4]);
         draggedBox=`sem${draggedBox[4]}`
         droppedBox=`sem${droppedBox[4]}`
-        const response = await fetch('/api/user/updateschedule', {
+        const response = await fetch(`${URL}/api/user/updateschedule`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email, draggableText, draggedBox, droppedBox })
