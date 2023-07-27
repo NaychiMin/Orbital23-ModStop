@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 
 //cors
-const allowedOrigins = ['https://frontend-modstop.onrender.com/login', "http://localhost:3000/"];
+const allowedOrigins = ['https://frontend-modstop.onrender.com/', "http://localhost:3000/"];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -27,7 +27,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 //will fire everytime a new request comes in
 app.use((req, res, next)=>{
