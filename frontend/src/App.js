@@ -12,7 +12,7 @@ import Majors from './pages/Majors';
 import MajorDetails from './pages/MajorDetails';
 import { ThemeProvider } from './context/recContext';
 
-export const URL = "https://modstop-backend.onrender.com";
+export const URL = "https://modstop-backend1.onrender.com";
 
 function App() {
   const {user} = useAuthContext()
