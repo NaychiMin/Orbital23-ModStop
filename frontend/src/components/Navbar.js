@@ -19,6 +19,9 @@ const Navbar = () => {
                 <nav>
                     {user && (
                         <div>
+                            <span className='navmenu'>
+                                <Link to="/gpasimulator">GPA Simualtor</Link>
+                            </span>
                             <span>{user.email}</span>
                             <button onClick={handleClick}>Log Out</button>
                         </div>

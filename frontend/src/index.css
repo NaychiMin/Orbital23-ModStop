@@ -130,6 +130,11 @@ nav button {
   margin-left: 10px;
 }
 
+.navmenu {
+  padding: 20px;
+  font-size: 20px;
+}
+
 /* auth forms */
 form.signup, form.login {
   max-width: 400px;

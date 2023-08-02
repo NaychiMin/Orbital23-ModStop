@@ -10,6 +10,7 @@ import Minors from './pages/Minors';
 import MinorDetails from './pages/MinorDetails';
 import Majors from './pages/Majors';
 import MajorDetails from './pages/MajorDetails';
+import GPASim from './pages/GPASim';
 import { ThemeProvider } from './context/recContext';
 
 export const URL = "https://modstop-backend1.onrender.com";
@@ -48,6 +49,10 @@ function App() {
             <Route
               path = "/majors"
               element={user ? <Majors /> : <Navigate to="/"/>}
+            />
+            <Route
+              path = "/gpasimulator"
+              element={user ? <GPASim /> : <Navigate to="/"/>}
             />
             <Route
               path = "/"
