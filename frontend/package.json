@@ -1,5 +1,5 @@
 {
-  "proxy": "https://modstop-backend.onrender.com",
+  "proxy": "https://modstop-backend1.onrender.com",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
