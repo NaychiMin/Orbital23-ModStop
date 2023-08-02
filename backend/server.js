@@ -14,7 +14,7 @@ app.use(express.json())
 
 //cors
 app.use(cors({
-    origin: ["http://localhost:3000", "https://modstop-frontend.onrender.com"]
+    origin: ["http://localhost:3000", "https://modstop-frontend1.onrender.com"]
 }));
 
 //will fire everytime a new request comes in
