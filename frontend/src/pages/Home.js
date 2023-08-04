@@ -3,8 +3,6 @@ import { useAuthContext } from "../hooks/useAuthContext"
 import RecSch from '../components/RecSch'
 import { Link } from "react-router-dom"
 
-
-
 const Home = () => {
     const {user} = useAuthContext()
 

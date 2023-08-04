@@ -20,7 +20,7 @@ const Navbar = () => {
                     {user && (
                         <div>
                             <span className='navmenu'>
-                                <Link to="/gpasimulator">GPA Simualtor</Link>
+                                <Link to="/gpasimulator">GPA Simulator</Link>
                             </span>
                             <span>{user.email}</span>
                             <button onClick={handleClick}>Log Out</button>
