@@ -8,7 +8,7 @@ const GPASim = () => {
     const {user} = useAuthContext()
     const email = user.email
 
-    const [grades, setGrades]=useState(["", "A+", "A", "A-", "B+", "B", "B-", "C+"])
+    const [grades, setGrades]=useState(["", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "D+", "D", "F"])
     
     const [sem1, setSem1] = useState(null)
     const [sem2, setSem2] = useState(null)
@@ -18,7 +18,12 @@ const GPASim = () => {
     const [sem6, setSem6] = useState(null)
     const [sem7, setSem7] = useState(null)
     const [sem8, setSem8] = useState(null)
-    const [semArray, setSemArray] = useState(null)
+    const [semArray, setSemArray] = useState([])
+
+    const [expectedGrades, setExpectedGrades] = useState(Array(semArray.length).fill(''));
+    const [actualGrades, setActualGrades] = useState(Array(semArray.length).fill(''));
+    const [expectedGPA, setExpectedGPA] = useState(0.0)
+    const [actualGPA, setActualGPA] = useState(0.0)
  
     useEffect( () => {
         fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
@@ -37,8 +42,9 @@ const GPASim = () => {
             setSem6(record.sem6);
             setSem7(record.sem7);
             setSem8(record.sem8);
+            
         })
-    }, [semArray])
+    }, [semArray, expectedGPA, actualGPA])
 
     const clickSem = sem => e => {
         console.log(sem)
@@ -56,43 +62,103 @@ const GPASim = () => {
         console.log(semArray)
     }
 
+    const handleExpectedGradeChange = (index, value) => {
+        const updatedExpectedGrades = [...expectedGrades];
+        updatedExpectedGrades[index] = value;
+        setExpectedGrades(updatedExpectedGrades);
+      };
+    
+      const handleActualGradeChange = (index, value) => {
+        const updatedActualGrades = [...actualGrades];
+        updatedActualGrades[index] = value;
+        setActualGrades(updatedActualGrades);
+      };
+
+    const calculateGPA = grades => {
+        let gpa = 0.0
+        grades.forEach (grade => {
+            console.log("grade:" , grade)
+            if (grade === "A+" || grade === "A") gpa += 5.0
+            else if (grade === "A-") gpa += 4.5
+            else if (grade === "B+") gpa += 4.0
+            else if (grade === "B") gpa += 3.5
+            else if (grade === "B-") gpa += 3.0
+            else if (grade === "C+") gpa += 2.5
+            else if (grade === "C") gpa += 2.0
+            else if (grade === "D+") gpa += 1.5
+            else if (grade === "D") gpa += 1.0
+            else gpa += 0.0
+        })
+        console.log("GPA:", gpa)
+        console.log("No. of mods:", grades.length)
+        gpa /= grades.length
+        return gpa
+    }
+
+    const getGPA = () => {
+        console.log('Expected Grades:', expectedGrades);
+        console.log('Actual Grades:', actualGrades);
+        setExpectedGPA(calculateGPA(expectedGrades))
+        setActualGPA(calculateGPA(actualGrades))
+        console.log('Expected GPA:', expectedGPA);
+        console.log('Actual GPA:', actualGPA);
+    }
+
     return (
-        <div >
-            <p>GPA Simulator</p>
+        <div>
+            <h2 style={{textAlign: 'center'}}>GPA Simulator</h2>
+            <p style={{textAlign:'center'}}>(currently all modules assumed to have the MCs)</p>
             <div>
-                <div>
-                    <h2 className="tabs" onClick={clickSem(1)}>Sem 1</h2>
-                    <h2 className="tabs" onClick={clickSem(2)}>Sem 2</h2>
-                    <h2 className="tabs" onClick={clickSem(3)}>Sem 3</h2>
-                    <h2 className="tabs" onClick={clickSem(4)}>Sem 4</h2>
-                    <h2 className="tabs" onClick={clickSem(5)}>Sem 5</h2>
-                    <h2 className="tabs" onClick={clickSem(6)}>Sem 6</h2>
-                    {sem7 && sem7.length > 0 && <h2 className="tabs" onClick={clickSem(7)}>Sem 7</h2>}
-                    {sem8 && sem8.length > 0 && <h2 className="tabs" onClick={clickSem(8)}>Sem 8</h2>}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <h3 className="tabs" onClick={clickSem(1)}>Sem 1</h3>
+                    <h3 className="tabs" onClick={clickSem(2)}>Sem 2</h3>
+                    <h3 className="tabs" onClick={clickSem(3)}>Sem 3</h3>
+                    <h3 className="tabs" onClick={clickSem(4)}>Sem 4</h3>
+                    <h3 className="tabs" onClick={clickSem(5)}>Sem 5</h3>
+                    <h3 className="tabs" onClick={clickSem(6)}>Sem 6</h3>
+                    {sem7 && sem7.length > 0 && <h3 className="tabs" onClick={clickSem(7)}>Sem 7</h3>}
+                    {sem8 && sem8.length > 0 && <h3 className="tabs" onClick={clickSem(8)}>Sem 8</h3>}
                 </div>
-                <div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <table>
                         <tr>
                             <td>Module</td>
                             <td>Expected Grade</td>
                             <td>Actual Grade</td>
                         </tr>
-                        {semArray && semArray.map(module =>
-                            <tr>
+                        {semArray && semArray.map( (module, index) =>
+                            <tr key={index}>
                                 <td>{module}</td>
                                 <td>
-                                    <select>
-                                        {grades.map(grade=><option>{grade}</option>)}
+                                    <select onChange={(e) => handleExpectedGradeChange(index, e.target.value)}>
+                                        {grades.map((grade, index) => (
+                                            <option key={index}>{grade}</option>
+                                        ))}
                                     </select>
                                 </td>
                                 <td>
-                                <select>
-                                    {grades.map(grade=><option>{grade}</option>)}
-                                </select>
+                                    <select onChange={(e) => handleActualGradeChange(index, e.target.value)}>
+                                        {grades.map((grade, index) => (
+                                            <option key={index}>{grade}</option>
+                                        ))}
+                                    </select>
                                 </td>
                             </tr>)}
                     </table>
-                </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>Expected GPA:</td>
+                                <td>{expectedGPA}</td>
+                            </tr>
+                            <tr>
+                                <td>Actual GPA:</td>
+                                <td>{actualGPA}</td>
+                            </tr>
+                        </table>
+                        <button onClick={getGPA}>Calculate GPA</button>
+                    </div>
+                </div> 
             </div>
         </div>
     )
