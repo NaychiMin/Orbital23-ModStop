@@ -239,12 +239,66 @@ const RecSch = () => {
                                             ))
                                         }
                                         </ul></div>
-                    <div class="product-card">3</div>
-                    <div class="product-card">4</div>
-                    <div class="product-card">5</div>
-                    <div class="product-card">6</div>
-                    <div class="product-card">7</div>
-                    <div class="product-card">8</div>
+                    <div class="product-card">sem 3
+                        <ul>
+                        {
+                            sem3 && sem3.map((course, index) => (
+                                <li className="dnd" >
+                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                </li>
+                              ))
+                        }
+                        </ul></div>
+                    <div class="product-card">sem 4
+                        <ul>
+                        {
+                            sem4 && sem4.map((course, index) => (
+                                <li className="dnd" >
+                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                </li>
+                              ))
+                        }
+                        </ul></div>
+                    <div class="product-card">sem 5
+                        <ul>
+                        {
+                            sem5 && sem5.map((course, index) => (
+                                <li className="dnd" >
+                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                </li>
+                              ))
+                        }
+                        </ul></div>
+                    <div class="product-card">sem 6
+                        <ul>
+                        {
+                            sem6 && sem6.map((course, index) => (
+                                <li className="dnd" >
+                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                </li>
+                              ))
+                        }
+                        </ul></div>
+                    <div class="product-card">sem 7
+                        <ul>
+                        {
+                            sem7 && sem7.map((course, index) => (
+                                <li className="dnd" >
+                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                </li>
+                              ))
+                        }
+                        </ul></div>
+                    <div class="product-card">sem 8
+                        <ul>
+                        {
+                            sem8 && sem8.map((course, index) => (
+                                <li className="dnd" >
+                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                </li>
+                              ))
+                        }
+                        </ul></div>
                 </div>
                 <div class="box box2"><div class="product-card">Remove Module</div></div>
             </div>
