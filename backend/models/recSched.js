@@ -98,13 +98,15 @@ recSchedSchema.statics.updateRecScheds = async function (email, draggableText, d
       }
   
       // Push the text to the destination sem array
-      record[droppedBox].push(text);
+      if(droppedBox !== "semv"){
+        record[droppedBox].push(text);
+      } 
+      
     };
   
     // Update the sem arrays based on draggedBox and droppedBox values
     if (draggedBox && droppedBox && draggableText) {
       updateSem(draggedBox, draggableText);
-      console.log('helloi')
     }
   
     // Save the updated record to the database

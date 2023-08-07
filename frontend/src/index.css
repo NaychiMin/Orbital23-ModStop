@@ -162,15 +162,51 @@ form.signup, form.login {
 }
 
 /* PRODUCTS */
-.recSched{
-  position: flex;
+.recSched {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.product {
+.box {
+  border: 1px solid white;
+  padding: 10px;
+  width: calc(25% - 10px);
+  gap: 10px;
+}
+
+.box1 {
+  flex: 0 0 60%; /* Take up 60% of the container */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Add gap between inner boxes */
+  margin-right: 10px; /* Add margin to the right */
+}
+
+.product-card {
+  width: calc(25% - 10px); /* Four boxes side by side with gap */
+  box-sizing: border-box;
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px; /* Rounded edges */
+  border: 1px solid black; /* Add border for clarity */
+}
+
+.box2 {
+  flex: 0 0 40%; /* Take up 40% of the container */
+  margin-left: 10px; /* Add margin to the left */
+}
+
+
+
+/* .product {
   position: relative;
   overflow: hidden;
   padding: 20px;
-  width: 80vw;
+  width: 50vw;
   margin-left: auto;
   margin-right: auto;
 }
@@ -281,4 +317,4 @@ img {
 .collection:nth-child(3) {
   grid-column: span 2;
   margin-bottom: 10px;
-}
+} */

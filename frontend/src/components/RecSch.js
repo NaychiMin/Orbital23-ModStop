@@ -22,6 +22,7 @@ const RecSch = () => {
 
     useEffect( () => {
         fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
+        //fetch(`api/user/recommendedSchedule?email=${email}`, {
             method: "GET"
         })
         .then((res) => res.json())
@@ -106,17 +107,18 @@ const RecSch = () => {
                     body: JSON.stringify({ email, draggableText, draggedBox, droppedBox })
                 })
         setChanged(!changed);
-        console.log(location.pathname.startsWith('/minors'))
+        //console.log(location.pathname.startsWith('/minors'))
     };
     
 
     return (
         <>
             <div className="recSched">
+            {/* <div className="box">
             <section className="product" >
                 <button className="pre-btn" onClick={handlePreviousClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
                 <button className="nxt-btn" onClick={handleNextClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
-                <div ref={containerRef} className="product-container">
+                <div ref={containerRef} className="product-container" >
                     <div className="product-card">
                         sem 1
                         <ul>
@@ -215,6 +217,36 @@ const RecSch = () => {
                     </div>
                 </div>
             </section>
+            </div> */}
+            <div class="box box1">
+                    <div class="product-card"><ul>
+                        sem 1
+                                        {
+                                            sem1 && sem1.map((course, index) => (
+                                                <li className="dnd" >
+                                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                                </li>
+                                            ))
+                                        }
+                                        </ul></div>
+                    <div class="product-card"><ul>
+                        sem 2
+                                        {
+                                            sem2 && sem2.map((course, index) => (
+                                                <li className="dnd">
+                                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                                </li>
+                                            ))
+                                        }
+                                        </ul></div>
+                    <div class="product-card">3</div>
+                    <div class="product-card">4</div>
+                    <div class="product-card">5</div>
+                    <div class="product-card">6</div>
+                    <div class="product-card">7</div>
+                    <div class="product-card">8</div>
+                </div>
+                <div class="box box2"><div class="product-card">Remove Module</div></div>
             </div>
         </>
         
