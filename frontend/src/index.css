@@ -31,6 +31,10 @@ header a {
   padding: 20px;
   margin: 0 auto;
 }
+.left-container {
+  display: flex;
+  align-items: center;
+}
 
 /* homepage */
 .home {
@@ -200,7 +204,59 @@ form.signup, form.login {
   margin-left: 10px; /* Add margin to the left */
 }
 
+/*GPA Simulator*/
+.mod-table {
+  min-width: 500px;
+  margin: 5px;
+}
 
+.mod-table td{
+  padding: 20px;
+}
+
+.gpa-table {
+  min-width: 100px;
+  margin: 5px;
+}
+
+.gpa-table td{
+  padding: 10px;
+}
+
+.gpa-table tr td button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sem-tabs {
+  display: inline-block;
+  max-width: auto;
+  margin: 10px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.active-tab {
+  display: inline-block;
+  max-width: auto;
+  margin: 10px;
+  padding: 20px;
+  background: var(--primary);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+}
 
 /* .product {
   position: relative;
