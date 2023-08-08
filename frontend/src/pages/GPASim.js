@@ -106,8 +106,8 @@ const GPASim = () => {
     const getGPA = () => {
         console.log('Expected Grades:', expectedGrades);
         console.log('Actual Grades:', actualGrades);
-        setExpectedGPA(calculateGPA(expectedGrades))
-        setActualGPA(calculateGPA(actualGrades))
+        setExpectedGPA(calculateGPA(expectedGrades));
+        setActualGPA(calculateGPA(actualGrades));
         console.log('Expected GPA:', expectedGPA);
         console.log('Actual GPA:', actualGPA);
     }
