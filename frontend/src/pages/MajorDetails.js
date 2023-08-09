@@ -18,7 +18,8 @@ const MajorDetails = () => {
     const email = user.email
 
     const fetchModInfo = () => {
-        fetch(`${URL}/api/user/module`, {
+        //fetch(`${URL}/api/user/module`, {
+        fetch(`/api/user/module`, {
             method: "GET"
         })
         .then(res => res.json())
@@ -29,7 +30,8 @@ const MajorDetails = () => {
     }
 
     useEffect( () => {
-        fetch(`${URL}/api/user/majors/` + id, {
+        // fetch(`${URL}/api/user/majors/` + id, {
+        fetch(`/api/user/majors/` + id, {
             method: "GET"
         })
         .then(res => res.json())
@@ -86,7 +88,8 @@ const MajorDetails = () => {
         console.log(dragMods)
         console.log('Dropped into:', droppedBox[4]);
         droppedBox=`sem${droppedBox[4]}`
-        const response = await fetch(`${URL}/api/user/updatescheduleextra`, {
+        //const response = await fetch(`${URL}/api/user/updatescheduleextra`, {
+        const response = await fetch(`/api/user/updatescheduleextra`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ email, dragMods, droppedBox })
@@ -102,15 +105,15 @@ const MajorDetails = () => {
     if(modules && coreMods) {
         return (
             <div>
-                <div>
-                    <RecSch/>
-                </div>
-                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
-                    <h3 className="tabs">{modules.major}</h3>
-                </div>
-                <p style={{textAlign: 'center'}}>{modules.details}</p>
-                <h3 style={{textAlign: 'center'}}>Core Modules</h3>
-                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top', flexWrap:'wrap'}}>
+                <RecSch>
+                <h3 style={{ fontWeight: 'bold', backgroundColor: 'white', textAlign: 'center', margin: 0 }}>
+                    {modules.major}
+                </h3>
+                <h5 style={{ textAlign: 'center', margin: 0 }}>
+                    {modules.details}
+                </h5>
+                <h3 style={{textAlign: 'center', margin: 0}}>Core Modules</h3>
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', margin:0 }}>
                     {modules.cores.map(module => {
                         let preReqs = getPreReq(module)
                         let empty
@@ -118,25 +121,22 @@ const MajorDetails = () => {
                             empty = "Cores not added yet"
                         }
                         return (
-                            <div
-                            draggable
-                            onDragEnd={handleDragEnd}
-                            onDragStart={handleDragStart}>
+                            <div draggable onDragEnd={handleDragEnd} onDragStart={handleDragStart} style={{margin:0}}>
                                 <div className="tabs">
-                                    <h3>{module}</h3>
-                                    <p>{empty}</p>
+                                    {module}
+                                    {empty}
                                 </div>
-                                <div>
+                                <div style={{ display: 'flex', flexDirection: 'column', margin: '0', marginLeft: '-5px' }}>
                                     {preReqs && preReqs.map(preReq => (
-                                        <p style={{textAlign: 'center'}}>{preReq}</p>
+                                        <p style={{ textAlign: 'center', margin: '0', paddingLeft: '5px' }}>{preReq}</p>
                                     ))}
                                 </div>
                             </div>
                         )
                     })}
                 </div> 
-                {modules.electives.length > 1 && (<h3 style={{textAlign: 'center'}}>Electives</h3>)}
-                <div style={{display: 'flex',  justifyContent:'center', textDecoration:'none', verticalAlign: 'top', flexWrap:'wrap'}}>
+                {modules.electives.length > 1 && (<h3 style={{textAlign: 'center', margin:0}}>Electives</h3>)}
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', margin:0 }}>
                     {modules.electives.length > 1 && modules.electives.map(module => {
                         let preReqs = getPreReq(module)
                         let empty
@@ -144,31 +144,30 @@ const MajorDetails = () => {
                             empty = "No Electives"
                         }
                         return (
-                            <div
-                            draggable
-                            onDragEnd={handleDragEnd}
-                            onDragStart={handleDragStart}>
+                            <div draggable onDragEnd={handleDragEnd} onDragStart={handleDragStart} style={{margin:0}}>
                                 <div className="tabs">
-                                    <h3>{module}</h3>
-                                    <p>{empty}</p>
+                                    {module}
+                                    {empty}
                                 </div>
-                                <div>
+                                <div style={{ display: 'flex', flexDirection: 'column', margin: '0', marginLeft: '-5px' }}>
                                     {preReqs && preReqs.map(preReq => (
-                                        <p style={{textAlign: 'center'}}>{preReq}</p>
+                                        <p style={{ textAlign: 'center', margin: '0', paddingLeft: '5px' }}>{preReq}</p>
                                     ))}
                                 </div>
                             </div>
                         )
                     })}
                 </div> 
+                </RecSch>
             </div>
         )
     }
     else {
         return(
             <div>
-                <RecSch/>
+                <RecSch>
                 <h3>Modules loading...</h3>
+                </RecSch>
             </div>
         )
     }

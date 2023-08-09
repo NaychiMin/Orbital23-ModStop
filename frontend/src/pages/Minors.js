@@ -11,7 +11,8 @@ const Minors = () => {
     const [minors, setMinors] = useState()
 
     useEffect( () => {
-        fetch(`${URL}/api/user/minors`, {
+        //fetch(`${URL}/api/user/minors`, {
+        fetch(`/api/user/minors`, {
             method: "GET"
         })
         .then(res => res.json())
@@ -24,25 +25,22 @@ const Minors = () => {
 
     return ( 
         <div>
-            <div>
-                <RecSch />
-            </div>
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
-                <h2 className="tabs">Minors</h2>
-            </div>   
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none', flexWrap:'wrap'}}>
+            <RecSch>
+            <h3 style={{ fontWeight: 'bold', backgroundColor: 'white', textAlign:'center', margin: 0 }}>Eligible Minors</h3> 
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none', flexWrap:'wrap', flexDirection:'row'}}>
                 {minors && minors.map(minor => {
                         if (minor.courses.includes(userCourse)){
                             return (
                                 <div className="tabs" key={minor._id}>
                                     <Link to={`/minors/${minor._id}`}>
-                                        <h3>{minor.minor}</h3>
+                                        {minor.minor}
                                     </Link>
                                 </div>
                             )
                         }
                 })}
-            </div>        
+            </div>
+            </RecSch>   
         </div>
      );
 }

@@ -13,7 +13,8 @@ export const useLogin = () => {
 
     console.log(URL)
 
-    const response = await fetch(`${URL}/api/user/login`, {
+    //const response = await fetch(`${URL}/api/user/login`, {
+    const response = await fetch(`/api/user/login`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ email, password })

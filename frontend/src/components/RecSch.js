@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { ThemeContext } from "../context/recContext";
 import { URL } from '../App.js'
 
-const RecSch = () => {
+const RecSch = ({children}) => {
     const { user } = useAuthContext();
     const email = user.email
     const containerRef = useRef(null);
@@ -21,8 +21,8 @@ const RecSch = () => {
     const [sem8, setSem8] = useState(null)
 
     useEffect( () => {
-        fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
-        //fetch(`api/user/recommendedSchedule?email=${email}`, {
+        //fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
+        fetch(`/api/user/recommendedSchedule?email=${email}`, {
             method: "GET"
         })
         .then((res) => res.json())
@@ -101,7 +101,8 @@ const RecSch = () => {
         console.log('Dropped into:', droppedBox[4]);
         draggedBox=`sem${draggedBox[4]}`
         droppedBox=`sem${droppedBox[4]}`
-        const response = await fetch(`${URL}/api/user/updateschedule`, {
+        // const response = await fetch(`${URL}/api/user/updateschedule`, {
+        const response = await fetch(`/api/user/updateschedule`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email, draggableText, draggedBox, droppedBox })
@@ -219,9 +220,10 @@ const RecSch = () => {
                                 </ul>
                         <div class="section-bottom">MCs</div>
                     </div>
-                </div>
-                <div class="box box2">
                     <div class="product-card">Remove Module</div>
+                </div>
+                <div class="box box2">        
+                     {children}
                 </div>
             </div>
         </>

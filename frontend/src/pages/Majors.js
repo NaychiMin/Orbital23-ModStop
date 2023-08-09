@@ -11,7 +11,8 @@ const Majors = () => {
     const [majors, setMajors] = useState()
 
     useEffect( () => {
-        fetch(`${URL}/api/user/majors`, {
+        //fetch(`${URL}/api/user/majors`, {
+        fetch(`/api/user/majors`, {
             method: "GET"
         })
         .then(res => res.json())
@@ -24,25 +25,22 @@ const Majors = () => {
 
     return ( 
         <div>
-            <div>
-                <RecSch />
-            </div>
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
-                <h2 className="tabs">Majors</h2>
-            </div>   
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none', flexWrap:'wrap'}}>
+            <RecSch>
+            <h3 style={{ fontWeight: 'bold', backgroundColor: 'white', textAlign:'center', margin: 0 }}>Eligible Majors</h3>   
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none', flexWrap:'wrap', flexDirection:'row'}}>
                 {majors && majors.map(major => {
                         if (major.courses.includes(userCourse)){
                             return (
                                 <div className="tabs" key={major._id}>
                                     <Link to={`/majors/${major._id}`}>
-                                        <h3>{major.major}</h3>
+                                        {major.major}
                                     </Link>
                                 </div>
                             )
                         }
                 })}
-            </div>       
+            </div> 
+            </RecSch>      
         </div>
      );
 }

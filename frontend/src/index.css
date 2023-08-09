@@ -7,12 +7,13 @@
   --error: #e7195a;
 }
 body {
-  background: #f1f1f1;
+  /* background: #f1f1f1; */
+  background: white;
   margin: 0;
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  background: #f1f1f1;
 }
 header .container {
   max-width: 1400px;
@@ -153,7 +154,7 @@ form.signup, form.login {
 }
 
 /* tabs under recommended schedule */
-.tabs {
+/* .tabs {
   display: inline-block;
   max-width: auto;
   margin: 10px;
@@ -163,20 +164,38 @@ form.signup, form.login {
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+} */
+.tabs {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #19bfe0;
+  text-align: center;
+  color: black;
+}
+
+.tabs:hover{
+  border: 1px dotted #19bfe0;
+}
+
+.tabs a {
+  color: black;
+  text-decoration: none; /* Remove underline */
 }
 
 /* PRODUCTS */
 .recSched {
   display: flex;
-  width: 80%;
-  align-items: center;
-  justify-content: center;
+  width: 90%;
+  /* align-items: center;
+  justify-content: center; */
   margin-left: auto;
   margin-right: auto;
 }
 
 .box {
-  border: 1px solid white;
+  border: 1px solid #f1f1f1;
   padding: 10px;
   width: calc(25% - 10px);
   gap: 10px;
@@ -188,6 +207,7 @@ form.signup, form.login {
   flex-wrap: wrap;
   gap: 10px; /* Add gap between inner boxes */
   margin-right: 10px; /* Add margin to the right */
+  justify-content: center;
 }
 
 .product-card {
@@ -200,6 +220,10 @@ form.signup, form.login {
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.product-card:hover{
+  border: 1px dotted black;
 }
 
 
@@ -244,7 +268,14 @@ form.signup, form.login {
 .box2 {
   flex: 0 0 40%; /* Take up 40% of the container */
   margin-left: 10px; /* Add margin to the left */
+  /* justify-content: center; */
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
 }
+
+/*Minor Display*/
+
 
 /*GPA Simulator*/
 .mod-table {

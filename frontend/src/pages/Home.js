@@ -4,25 +4,23 @@ import RecSch from '../components/RecSch'
 import { Link } from "react-router-dom"
 
 const Home = () => {
-    const {user} = useAuthContext()
+    const { user } = useAuthContext()
 
     return (
-        <div >
-            <RecSch/>
-
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', textDecoration:'none'}}>
+        <div>
+            <RecSch>
                 <Link to="/minors">
                     <div className="tabs">
-                        <h3>Minors</h3>
+                        View Minors
                     </div>
                 </Link>
 
                 <Link to="/majors">
                     <div className="tabs">
-                        <h3>Majors</h3>
+                        View Majors
                     </div>
-                </Link>     
-            </div>
+                </Link>
+            </RecSch>
         </div>
     )
 }
