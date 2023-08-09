@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { useTable } from 'react-table';
 import DataTable from 'react-data-table-component';
 import { ThemeContext } from "../context/recContext"
@@ -61,12 +61,25 @@ const DataTableExample = ({email}) => {
                 })
         setChanged(!changed);
     };
+
+    //replace this with new module database
+    const [coreMods, setCoreMods] = useState(null)
+    useEffect(()=>{
+        fetch(`/api/user/module`, {
+            method: "GET"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data, "moduleData")
+            setCoreMods(data)
+        })
+    },[])
     
     
     const columns = [
         {
             name: 'Module',
-            selector: row => row.name,
+            selector: row => row.module,
             sortable: true,
             cell: (row, index) => (
                 <ul className='button-list'>
@@ -77,7 +90,7 @@ const DataTableExample = ({email}) => {
                     onDragStart={handleDragStart}
                     key={index}
                   >
-                    {row.name}
+                    {row.module}
                   </button>
                 </li>
                 </ul>
@@ -98,25 +111,25 @@ const DataTableExample = ({email}) => {
     const data = [
         {
            id: 1,
-           name: 'CS2040C',
+           module: 'CS2040C',
            mcs: '4',
            semester: '1/2' 
         },
         {
             id: 2,
-            name: 'CS1010',
+            module: 'CS1010',
             mcs: '4',
             semester: '1/2' 
          },
          {
             id: 3,
-            name: 'CG1111A',
+            module: 'CG1111A',
             mcs: '4',
             semester: '1' 
          },
          {
             id: 4,
-            name: 'EE2026',
+            module: 'EE2026',
             mcs: '4',
             semester: '1/2' 
          }
@@ -126,7 +139,7 @@ const DataTableExample = ({email}) => {
 
     function handleFilter(event) {
         const newData = data.filter(row=>{
-            return row.name.toLowerCase().includes(event.target.value.toLowerCase())
+            return row.module.toLowerCase().includes(event.target.value.toLowerCase())
         })
         setRecords(newData)
     }
