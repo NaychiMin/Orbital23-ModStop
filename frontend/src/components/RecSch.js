@@ -4,6 +4,8 @@ import { isEqual } from 'lodash';
 import { useLocation } from 'react-router-dom';
 import { ThemeContext } from "../context/recContext";
 import { URL } from '../App.js'
+import DataTableExample from './ModuleTable';
+import { useTable } from 'react-table';
 
 const RecSch = ({children}) => {
     const { user } = useAuthContext();
@@ -226,6 +228,8 @@ const RecSch = ({children}) => {
                      {children}
                 </div>
             </div>
+            <DataTableExample email={email}/>
+           
         </>
         
     );

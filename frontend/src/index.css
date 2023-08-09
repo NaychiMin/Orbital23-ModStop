@@ -226,6 +226,10 @@ form.signup, form.login {
   border: 1px dotted black;
 }
 
+.product-card.hovered{
+  border: 2px dashed #333;
+}
+
 
 .section-bottom {
   text-align: center;

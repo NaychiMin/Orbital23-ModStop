@@ -85,17 +85,19 @@ recSchedSchema.statics.updateRecScheds = async function (email, draggableText, d
   
     // Function to update the sem arrays
     const updateSem = (box, text) => {
-      // Find the index of the text in the source sem array
-      const sourceSem = record[box];
-      const sourceIndex = sourceSem.indexOf(text);
-  
-      // If the text is found in the source sem array, remove it
-      if (sourceIndex !== -1) {
-        sourceSem.splice(sourceIndex, 1);
-  
-        // Update the state with the modified array
-        record[box] = sourceSem;
-      }
+      if(box !== 'tableOfMods'){
+        // Find the index of the text in the source sem array
+        const sourceSem = record[box];
+        const sourceIndex = sourceSem.indexOf(text);
+    
+        // If the text is found in the source sem array, remove it
+        if (sourceIndex !== -1) {
+          sourceSem.splice(sourceIndex, 1);
+    
+          // Update the state with the modified array
+          record[box] = sourceSem;
+        }
+      } 
   
       // Push the text to the destination sem array
       if(droppedBox !== "semv"){
@@ -105,10 +107,10 @@ recSchedSchema.statics.updateRecScheds = async function (email, draggableText, d
     };
   
     // Update the sem arrays based on draggedBox and droppedBox values
-    if (draggedBox && droppedBox && draggableText) {
+    if (draggedBox && droppedBox && draggableText ) {
       updateSem(draggedBox, draggableText);
     }
-  
+
     // Save the updated record to the database
     await record.save();
   
