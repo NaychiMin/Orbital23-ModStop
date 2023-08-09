@@ -13,15 +13,22 @@ const Navbar = () => {
     return(
         <header>
             <div className="container">
-                <Link to="/">
-                    <h1>ModStop!</h1>
-                </Link>
-                <nav>
+                <div className='left-container'>
+                    <Link to="/">
+                        <h1>ModStop!</h1>
+                    </Link>
                     {user && (
                         <div>
                             <span className='navmenu'>
                                 <Link to="/gpasimulator">GPA Simulator</Link>
                             </span>
+                        </div>
+                    )}
+                </div>
+                
+                <nav>
+                    {user && (
+                        <div>
                             <span>{user.email}</span>
                             <button onClick={handleClick}>Log Out</button>
                         </div>

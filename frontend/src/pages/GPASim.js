@@ -8,6 +8,7 @@ const GPASim = () => {
     const {user} = useAuthContext()
     const email = user.email
 
+    const selectTags = document.querySelectorAll('select');
     const [grades, setGrades]=useState(["", "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "D+", "D", "F"])
     
     const [sem1, setSem1] = useState(null)
@@ -19,6 +20,7 @@ const GPASim = () => {
     const [sem7, setSem7] = useState(null)
     const [sem8, setSem8] = useState(null)
     const [semArray, setSemArray] = useState([])
+    const [activeTab, setActiveTab] = useState(0);
 
     const [expectedGrades, setExpectedGrades] = useState(Array(semArray.length).fill(''));
     const [actualGrades, setActualGrades] = useState(Array(semArray.length).fill(''));
@@ -47,6 +49,9 @@ const GPASim = () => {
     }, [semArray, expectedGPA, actualGPA])
 
     const clickSem = sem => e => {
+        setExpectedGPA(0.0)
+        setActualGPA(0.0)
+        setActiveTab(sem)
         console.log(sem)
         switch(sem) {
             case 1: setSemArray(sem1); break;
@@ -60,6 +65,9 @@ const GPASim = () => {
             default: setSemArray(sem1); break;
         }
         console.log(semArray)
+        selectTags.forEach(selectTag => {
+            selectTag.value = grades[0]
+        })   
     }
 
     const handleExpectedGradeChange = (index, value) => {
@@ -98,8 +106,8 @@ const GPASim = () => {
     const getGPA = () => {
         console.log('Expected Grades:', expectedGrades);
         console.log('Actual Grades:', actualGrades);
-        setExpectedGPA(calculateGPA(expectedGrades))
-        setActualGPA(calculateGPA(actualGrades))
+        setExpectedGPA(calculateGPA(expectedGrades));
+        setActualGPA(calculateGPA(actualGrades));
         console.log('Expected GPA:', expectedGPA);
         console.log('Actual GPA:', actualGPA);
     }
@@ -107,20 +115,19 @@ const GPASim = () => {
     return (
         <div>
             <h2 style={{textAlign: 'center'}}>GPA Simulator</h2>
-            <p style={{textAlign:'center'}}>(currently all modules assumed to have the MCs)</p>
             <div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <h3 className="tabs" onClick={clickSem(1)}>Sem 1</h3>
-                    <h3 className="tabs" onClick={clickSem(2)}>Sem 2</h3>
-                    <h3 className="tabs" onClick={clickSem(3)}>Sem 3</h3>
-                    <h3 className="tabs" onClick={clickSem(4)}>Sem 4</h3>
-                    <h3 className="tabs" onClick={clickSem(5)}>Sem 5</h3>
-                    <h3 className="tabs" onClick={clickSem(6)}>Sem 6</h3>
-                    {sem7 && sem7.length > 0 && <h3 className="tabs" onClick={clickSem(7)}>Sem 7</h3>}
-                    {sem8 && sem8.length > 0 && <h3 className="tabs" onClick={clickSem(8)}>Sem 8</h3>}
+                    <h3 className={`sem-tabs ${activeTab === 1 ? 'active-tab' : ''}`} onClick={clickSem(1)}>Sem 1</h3>
+                    <h3 className={`sem-tabs ${activeTab === 2 ? 'active-tab' : ''}`} onClick={clickSem(2)}>Sem 2</h3>
+                    <h3 className={`sem-tabs ${activeTab === 3 ? 'active-tab' : ''}`} onClick={clickSem(3)}>Sem 3</h3>
+                    <h3 className={`sem-tabs ${activeTab === 4 ? 'active-tab' : ''}`} onClick={clickSem(4)}>Sem 4</h3>
+                    <h3 className={`sem-tabs ${activeTab === 5 ? 'active-tab' : ''}`} onClick={clickSem(5)}>Sem 5</h3>
+                    <h3 className={`sem-tabs ${activeTab === 6 ? 'active-tab' : ''}`} onClick={clickSem(6)}>Sem 6</h3>
+                    {sem7 && sem7.length > 0 && <h3 className={`sem-tabs ${activeTab === 7 ? 'active-tab' : ''}`} onClick={clickSem(7)}>Sem 7</h3>}
+                    {sem8 && sem8.length > 0 && <h3 className={`sem-tabs ${activeTab === 8 ? 'active-tab' : ''}`} onClick={clickSem(8)}>Sem 8</h3>}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <table>
+                    <table className="mod-table">
                         <tr>
                             <td>Module</td>
                             <td>Expected Grade</td>
@@ -146,7 +153,7 @@ const GPASim = () => {
                             </tr>)}
                     </table>
                     <div>
-                        <table>
+                        <table className="gpa-table">
                             <tr>
                                 <td>Expected GPA:</td>
                                 <td>{expectedGPA}</td>
@@ -155,8 +162,12 @@ const GPASim = () => {
                                 <td>Actual GPA:</td>
                                 <td>{actualGPA}</td>
                             </tr>
+                            <tr>
+                                <td colSpan="2" style={{ textAlign: 'center' }}>
+                                    <button onClick={getGPA}>Calculate GPA</button>
+                                </td>
+                            </tr>
                         </table>
-                        <button onClick={getGPA}>Calculate GPA</button>
                     </div>
                 </div> 
             </div>
