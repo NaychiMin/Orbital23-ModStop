@@ -114,193 +114,115 @@ const RecSch = () => {
     return (
         <>
             <div className="recSched">
-            {/* <div className="box">
-            <section className="product" >
-                <button className="pre-btn" onClick={handlePreviousClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
-                <button className="nxt-btn" onClick={handleNextClick}><img src="https://cdn-icons-png.flaticon.com/512/318/318476.png" alt="btn" /></button>
-                <div ref={containerRef} className="product-container" >
-                    <div className="product-card">
-                        sem 1
-                        <ul>
-                        {
-                            sem1 && sem1.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                <div class="box box1">
+                    <div class="product-card">
+                        <div class="section-top">Sem 1</div>
+                            <ul class="button-list">
+                                {
+                                    sem1 && sem1.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 2
-                        <ul>
-                        {
-                            sem2 && sem2.map((course, index) => (
-                                <li className="dnd">
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 2</div>
+                            <ul class="button-list">
+                                {
+                                    sem2 && sem2.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 3
-                        <ul>
-                        {
-                            sem3 && sem3.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 3</div>
+                            <ul class="button-list">
+                                {
+                                    sem3 && sem3.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 4
-                        <ul>
-                        {
-                            sem4 && sem4.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 4</div>
+                            <ul class="button-list">
+                                {
+                                    sem4 && sem4.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 5
-                        <ul>
-                        {
-                            sem5 && sem5.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 5</div>
+                            <ul class="button-list">
+                                {
+                                    sem5 && sem5.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 6
-                        <ul>
-                        {
-                            sem6 && sem6.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 6</div>
+                            <ul class="button-list">
+                                {
+                                    sem6 && sem6.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 7
-                        <ul>
-                        {
-                            sem7 && sem7.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 7</div>
+                            <ul class="button-list">
+                                {
+                                    sem7 && sem7.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
-                    <div className="product-card">
-                        sem 8
-                            <ul>
-                            {
-                                sem8 && sem8.map((course, index) => (
-                                    <li className="dnd" >
-                                    <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                    </li>
-                                ))
-                            }
-                            </ul>
+                    <div class="product-card">
+                        <div class="section-top">Sem 8</div>
+                            <ul class="button-list">
+                                {
+                                    sem8 && sem8.map((course, index) => (
+                                        <li className="dnd" >
+                                        <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
+                                        </li>
+                                    ))
+                                }
+                                </ul>
+                        <div class="section-bottom">MCs</div>
                     </div>
                 </div>
-            </section>
-            </div> */}
-            <div class="box box1">
-                    <div class="product-card"><ul>
-                        sem 1
-                                        {
-                                            sem1 && sem1.map((course, index) => (
-                                                <li className="dnd" >
-                                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                                </li>
-                                            ))
-                                        }
-                                        </ul></div>
-                    <div class="product-card"><ul>
-                        sem 2
-                                        {
-                                            sem2 && sem2.map((course, index) => (
-                                                <li className="dnd">
-                                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                                </li>
-                                            ))
-                                        }
-                                        </ul></div>
-                    <div class="product-card">sem 3
-                        <ul>
-                        {
-                            sem3 && sem3.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul></div>
-                    <div class="product-card">sem 4
-                        <ul>
-                        {
-                            sem4 && sem4.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul></div>
-                    <div class="product-card">sem 5
-                        <ul>
-                        {
-                            sem5 && sem5.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul></div>
-                    <div class="product-card">sem 6
-                        <ul>
-                        {
-                            sem6 && sem6.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul></div>
-                    <div class="product-card">sem 7
-                        <ul>
-                        {
-                            sem7 && sem7.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul></div>
-                    <div class="product-card">sem 8
-                        <ul>
-                        {
-                            sem8 && sem8.map((course, index) => (
-                                <li className="dnd" >
-                                <button draggable={true} onDragEnd={handleDragEnd} onDragStart={handleDragStart} key={index}>{course}</button>
-                                </li>
-                              ))
-                        }
-                        </ul></div>
+                <div class="box box2">
+                    <div class="product-card">Remove Module</div>
                 </div>
-                <div class="box box2"><div class="product-card">Remove Module</div></div>
             </div>
         </>
         

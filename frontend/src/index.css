@@ -187,12 +187,54 @@ form.signup, form.login {
 }
 
 .product-card {
-  width: calc(25% - 10px); /* Four boxes side by side with gap */
+  width: calc(25% - 10px);
   box-sizing: border-box;
   padding: 5px;
   text-align: center;
-  border-radius: 10px; /* Rounded edges */
-  border: 1px solid black; /* Add border for clarity */
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+
+.section-bottom {
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: lightblue;
+}
+
+.section-top::before {
+  top: -5px; /* Position above the section */
+}
+
+.section-bottom {
+  margin-top: auto; /* Push to the bottom of the container */
+}
+
+  
+/* New CSS for the list and button styles */
+.button-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.button-list li {
+  margin: 5px 0;
+  position: relative;
+}
+
+.button-list li button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color:#19bfe0;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .box2 {
