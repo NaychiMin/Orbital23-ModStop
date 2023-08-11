@@ -68,7 +68,7 @@ recSchedSchema.statics.addDefault = async function(email, course, track) {
         
     } else {
       if(track == "Polytechnic"){
-        sem1 = ["EE1111A", "CS1010", "MA1301", "PC1201", "GE"]
+        sem1 = ["EE1111A", "CS1010E", "MA1301", "PC1201", "GE"]
         sem2 = ["EE2111A", 'GE', 'PF1101', 'GEA1000', 'MA1508E']
         sem3 = ['EE2026', 'EE2027', 'EE2022', 'IE2141', 'ES2631', 'MA1511', 'MA1512']
         sem4 = ['EE2023', 'EE2012', 'TE', 'EE2211', 'EG2501', 'PC2020']
