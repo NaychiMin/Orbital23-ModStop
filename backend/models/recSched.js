@@ -47,7 +47,7 @@ recSchedSchema.statics.addDefault = async function(email, course, track) {
     //validation
     if (course == "Computer Engineering"){
         if(track == "Polytechnic"){
-            sem1 = ["CG1111", "CS1010", "MA1301", "PC1201", "GE"]
+            sem1 = ["CG1111A", "CS1010", "MA1301", "PC1201", "GE"]
             sem2 = ["CG2111A", 'CS2040C', 'EE2026', 'GEA1000', 'MA1508E']
             sem3 = ['CG2027', 'CG2028', 'CS2113', 'IE2141', 'ES2631', 'MA1511', 'MA1512']
             sem4 = ['CG2023', 'CG2271', 'PF1101', 'EE2211', 'EG2501']
