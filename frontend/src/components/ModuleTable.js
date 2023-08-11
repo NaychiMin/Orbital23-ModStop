@@ -1,7 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { useTable } from 'react-table';
 import DataTable from 'react-data-table-component';
-import { ThemeContext } from "../context/recContext"
+import { ThemeContext } from "../context/recContext";
+import { URL } from '../App.js';
+
 
 const DataTableExample = ({email, coreMods}) => {
 
@@ -59,6 +61,8 @@ const DataTableExample = ({email, coreMods}) => {
                 })
         setChanged(!changed);
     };
+
+    
 
     const [records, setRecords] = useState([]);
     useEffect(() => {

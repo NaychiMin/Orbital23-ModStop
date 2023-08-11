@@ -43,7 +43,8 @@ const RecSch = ({children}) => {
                     id: index + 1,
                     module: item.module,
                     mcs: item.mcs,
-                    semester: item.semester
+                    semester: item.semester,
+                    name: item.name
                 }));
                 setCoreMods(transformedData);
                 console.log(transformedData)
