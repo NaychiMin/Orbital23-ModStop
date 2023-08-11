@@ -11,8 +11,7 @@ const Majors = () => {
     const [majors, setMajors] = useState()
 
     useEffect( () => {
-        //fetch(`${URL}/api/user/majors`, {
-        fetch(`/api/user/majors`, {
+        fetch(`${URL}/api/user/majors`, {
             method: "GET"
         })
         .then(res => res.json())

@@ -11,8 +11,7 @@ const Minors = () => {
     const [minors, setMinors] = useState()
 
     useEffect( () => {
-        //fetch(`${URL}/api/user/minors`, {
-        fetch(`/api/user/minors`, {
+        fetch(`${URL}/api/user/minors`, {
             method: "GET"
         })
         .then(res => res.json())

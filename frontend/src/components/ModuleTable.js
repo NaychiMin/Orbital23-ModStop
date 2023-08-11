@@ -52,9 +52,7 @@ const DataTableExample = ({email}) => {
         console.log('Dropped into:', droppedBox[4]);
         draggedBox=`tableOfMods`
         droppedBox=`sem${droppedBox[4]}`
-        //console.log(email)
-        // const response = await fetch(`${URL}/api/user/updateschedule`, {
-        const response = await fetch(`/api/user/updateschedule`, {
+         const response = await fetch(`${URL}/api/user/updateschedule`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email, draggableText, draggedBox, droppedBox })
@@ -63,18 +61,40 @@ const DataTableExample = ({email}) => {
     };
 
     //replace this with new module database
-    const [coreMods, setCoreMods] = useState(null)
-    useEffect(()=>{
-        fetch(`/api/user/module`, {
+    const [coreMods, setCoreMods] = useState([]);
+    useEffect(() => {
+        fetch(`${URL}/api/user/moduletable`, {
             method: "GET"
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data, "moduleData")
-            setCoreMods(data)
-        })
-    },[])
-    
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                const transformedData = data.map((item, index) => ({
+                    id: index + 1,
+                    module: item.module,
+                    mcs: item.mcs,
+                    semester: item.semester,
+                    name: item.name
+                }));
+                setCoreMods(transformedData);
+                console.log(transformedData)
+            });
+    }, []);
+
+   
+
+    const [records, setRecords] = useState([]);
+    useEffect(() => {
+        setRecords(coreMods);
+    }, [coreMods]);
+
+    function handleFilter(event) {
+        const newData = coreMods.filter(row => {
+            return row.module.toLowerCase().includes(event.target.value.toLowerCase())
+        });
+        setRecords(newData);
+    }
+      
     
     const columns = [
         {
@@ -97,6 +117,11 @@ const DataTableExample = ({email}) => {
               )
         },
         {
+            name: 'Name of Module',
+            selector: row => row.name,
+            sortable: true
+        },
+        {
             name: 'MCs',
             selector: row => row.mcs,
             sortable: true
@@ -108,57 +133,21 @@ const DataTableExample = ({email}) => {
         }
     ];
 
-    const data = [
-        {
-           id: 1,
-           module: 'CS2040C',
-           mcs: '4',
-           semester: '1/2' 
-        },
-        {
-            id: 2,
-            module: 'CS1010',
-            mcs: '4',
-            semester: '1/2' 
-         },
-         {
-            id: 3,
-            module: 'CG1111A',
-            mcs: '4',
-            semester: '1' 
-         },
-         {
-            id: 4,
-            module: 'EE2026',
-            mcs: '4',
-            semester: '1/2' 
-         }
-    ]
 
-    const [records, setRecords] = useState(data);
-
-    function handleFilter(event) {
-        const newData = data.filter(row=>{
-            return row.module.toLowerCase().includes(event.target.value.toLowerCase())
-        })
-        setRecords(newData)
-    }
-
-
-  return (
-    <div>
+    return (
         <div>
-            Filter Modules:
-            <input type="text" onChange={handleFilter} style={{margin:0}}/>
+            <div>
+                Filter Modules:
+                <input type="text" onChange={handleFilter} style={{ margin: 0 }} />
+            </div>
+            <DataTable
+                columns={columns}
+                data={records}
+                fixedHeader
+                pagination
+            />
         </div>
-        <DataTable
-            columns={columns}
-            data={records}
-            fixedHeader
-            pagination
-        ></DataTable>
-    </div>
-  );
+    );
 };
 
 export default DataTableExample;

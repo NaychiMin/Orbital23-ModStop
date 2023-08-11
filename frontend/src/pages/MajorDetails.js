@@ -18,8 +18,7 @@ const MajorDetails = () => {
     const email = user.email
 
     const fetchModInfo = () => {
-        //fetch(`${URL}/api/user/module`, {
-        fetch(`/api/user/module`, {
+        fetch(`${URL}/api/user/module`, {
             method: "GET"
         })
         .then(res => res.json())
@@ -30,8 +29,7 @@ const MajorDetails = () => {
     }
 
     useEffect( () => {
-        // fetch(`${URL}/api/user/majors/` + id, {
-        fetch(`/api/user/majors/` + id, {
+         fetch(`${URL}/api/user/majors/` + id, {
             method: "GET"
         })
         .then(res => res.json())
@@ -88,16 +86,12 @@ const MajorDetails = () => {
         console.log(dragMods)
         console.log('Dropped into:', droppedBox[4]);
         droppedBox=`sem${droppedBox[4]}`
-        //const response = await fetch(`${URL}/api/user/updatescheduleextra`, {
-        const response = await fetch(`/api/user/updatescheduleextra`, {
+        const response = await fetch(`${URL}/api/user/updatescheduleextra`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ email, dragMods, droppedBox })
             })
-        // window.location.reload(true)
-        //navigate(location.pathname)
         setChanged(!changed);
-        // console.log(changed)
     }
 
 

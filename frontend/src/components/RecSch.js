@@ -12,19 +12,56 @@ const RecSch = ({children}) => {
     const email = user.email
     const containerRef = useRef(null);
     const {changed, setChanged} = useContext(ThemeContext);
-    //const [changed, setChanged] = useState(ThemeContext);
-    const [sem1, setSem1] = useState(null)
-    const [sem2, setSem2] = useState(null)
-    const [sem3, setSem3] = useState(null)
-    const [sem4, setSem4] = useState(null)
-    const [sem5, setSem5] = useState(null)
-    const [sem6, setSem6] = useState(null)
-    const [sem7, setSem7] = useState(null)
-    const [sem8, setSem8] = useState(null)
+    const [sem1, setSem1] = useState([])
+    const [sem2, setSem2] = useState([])
+    const [sem3, setSem3] = useState([])
+    const [sem4, setSem4] = useState([])
+    const [sem5, setSem5] = useState([])
+    const [sem6, setSem6] = useState([])
+    const [sem7, setSem7] = useState([])
+    const [sem8, setSem8] = useState([])
+    const [sem1mcs, setSem1mcs] = useState("")
+    const [sem2mcs, setSem2mcs] = useState("")
+    const [sem3mcs, setSem3mcs] = useState("")
+    const [sem4mcs, setSem4mcs] = useState("")
+    const [sem5mcs, setSem5mcs] = useState("")
+    const [sem6mcs, setSem6mcs] = useState("")
+    const [sem7mcs, setSem7mcs] = useState("")
+    const [sem8mcs, setSem8mcs] = useState("")
+
+
+    
+    const [coreMods, setCoreMods] = useState([]);
+    useEffect(() => {
+        fetch(`${URL}/api/user/moduletable`, {
+            method: "GET"
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                const transformedData = data.map((item, index) => ({
+                    id: index + 1,
+                    module: item.module,
+                    mcs: item.mcs,
+                    semester: item.semester
+                }));
+                setCoreMods(transformedData);
+                console.log(transformedData)
+            });
+    }, []);
+
+    function sumMcsArray(moduleCodes, moduleRecords) {
+        const mcsArray = moduleCodes.map(moduleCode => {
+          const moduleRecord = moduleRecords.find(record => record.module === moduleCode);
+          return moduleRecord ? parseInt(moduleRecord.mcs) || 0 : 0; 
+        });
+      
+        const totalSum = mcsArray.reduce((sum, mcs) => sum + mcs, 0);
+        return totalSum;
+      }
 
     useEffect( () => {
-        //fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
-        fetch(`/api/user/recommendedSchedule?email=${email}`, {
+        fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
             method: "GET"
         })
         .then((res) => res.json())
@@ -43,6 +80,19 @@ const RecSch = ({children}) => {
     
         })
     }, [changed])
+
+    useEffect(() => {
+        setSem1mcs(sumMcsArray(sem1, coreMods));
+        setSem2mcs(sumMcsArray(sem2, coreMods));
+        setSem3mcs(sumMcsArray(sem3, coreMods));
+        setSem4mcs(sumMcsArray(sem4, coreMods));
+        setSem5mcs(sumMcsArray(sem5, coreMods));
+        setSem6mcs(sumMcsArray(sem6, coreMods));
+        setSem7mcs(sumMcsArray(sem7, coreMods));
+        setSem8mcs(sumMcsArray(sem8, coreMods));
+      }, [sem1, sem2, sem3, sem4, sem5, sem6, sem7, sem8])
+
+    console.log(sem8mcs, 'sem8')
 
 
     const handleNextClick = (event) => {
@@ -103,14 +153,12 @@ const RecSch = ({children}) => {
         console.log('Dropped into:', droppedBox[4]);
         draggedBox=`sem${draggedBox[4]}`
         droppedBox=`sem${droppedBox[4]}`
-        // const response = await fetch(`${URL}/api/user/updateschedule`, {
-        const response = await fetch(`/api/user/updateschedule`, {
+         const response = await fetch(`${URL}/api/user/updateschedule`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email, draggableText, draggedBox, droppedBox })
                 })
         setChanged(!changed);
-        //console.log(location.pathname.startsWith('/minors'))
     };
     
 
@@ -129,7 +177,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem1mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 2</div>
@@ -142,7 +190,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem2mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 3</div>
@@ -155,7 +203,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem3mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 4</div>
@@ -168,7 +216,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem4mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 5</div>
@@ -181,7 +229,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem5mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 6</div>
@@ -194,7 +242,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem6mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 7</div>
@@ -207,7 +255,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem7mcs} MCs</div>
                     </div>
                     <div class="product-card">
                         <div class="section-top">Sem 8</div>
@@ -220,7 +268,7 @@ const RecSch = ({children}) => {
                                     ))
                                 }
                                 </ul>
-                        <div class="section-bottom">MCs</div>
+                        <div class="section-bottom">{sem8mcs} MCs</div>
                     </div>
                     <div class="product-card">Remove Module</div>
                 </div>

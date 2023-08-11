@@ -28,8 +28,7 @@ const GPASim = () => {
     const [actualGPA, setActualGPA] = useState(0.0)
  
     useEffect( () => {
-        //fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
-            fetch(`/api/user/recommendedSchedule?email=${email}`, {
+        fetch(`${URL}/api/user/recommendedSchedule?email=${email}`, {
             method: "GET"
         })
         .then((res) => res.json())

@@ -3,6 +3,7 @@ const Minor = require('../models/minorModel')
 const Major = require('../models/majorModel')
 const Module = require('../models/moduleModel')
 const recSched = require('../models/recSched')
+const modTable = require('../models/modTable')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
@@ -127,6 +128,15 @@ const getModuleInfo = async (req, res) => {
     res.status(200).json(module)
 }
 
+//get module info for table
+const getModuleInfoTable = async (req, res) => {
+    const module = await modTable.find()
+    if(!module) {
+        return res.status(404).json({error: 'No such module'})
+    }
+    res.status(200).json(module)
+}
+
 
 //get recommended schedule
 const getRecSched = async (req, res) => {
@@ -168,4 +178,4 @@ const updateRecSchedExtra = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
-module.exports = {signupUser, loginUser, getMinors, getMinorModules, getMajors, getMajorModules, getModuleInfo, createRecSched, getRecSched, updateRecSched, updateRecSchedExtra}
+module.exports = {signupUser, loginUser, getMinors, getMinorModules, getMajors, getMajorModules, getModuleInfo, createRecSched, getRecSched, updateRecSched, updateRecSchedExtra, getModuleInfoTable}

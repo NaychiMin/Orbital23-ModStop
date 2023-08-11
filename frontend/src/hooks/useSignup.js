@@ -11,21 +11,18 @@ export const useSignup = () => {
     setIsLoading(true)
     setError(null)
 
-    //const response = await fetch(`${URL}/api/user/signup`, {
-    const response = await fetch(`/api/user/signup`, {
+    const response = await fetch(`${URL}/api/user/signup`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ email, password, username, course, track })
     })
     const json = await response.json()
 
-    // const response1 = await fetch(`${URL}/api/user/signupsched`, {
-    const response1 = await fetch(`/api/user/signupsched`, {
+    const response1 = await fetch(`${URL}/api/user/signupsched`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ email, course, track })
     })
-    //const json1 = await response1.json()
 
     if (!response.ok || !response1.ok) {
       setIsLoading(false)
