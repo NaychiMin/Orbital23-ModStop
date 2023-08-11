@@ -58,11 +58,11 @@ recSchedSchema.statics.addDefault = async function(email, course, track) {
         } else {
             sem1 = ["CG1111", "CS1010", "EG1311", "MA1511", "MA1512", "GE"]
             sem2 = ["CG2111A", 'DTK1234', 'MA1508E', 'PF1101', 'GEA1000']
-            sem3 = ['CS1231', 'CS2040C', 'GEC1xxx', 'IE2141', 'ES2631']
+            sem3 = ['CS1231', 'CS2040C', 'GE', 'IE2141', 'ES2631']
             sem4 = ['CG2023', 'CS2113', 'EE2026', 'EE2211', 'EG2501']
             sem5 = ['CP3880', 'EG2401A']
-            sem6 = ['CG2027', 'CG2028', 'CG2271', 'CDE2000', 'GESS1xxx']
-            sem7 = ['CG4002', 'EE4204', 'GEN1xxx']
+            sem6 = ['CG2027', 'CG2028', 'CG2271', 'CDE2000', 'GE']
+            sem7 = ['CG4002', 'EE4204', 'GE']
             sem8 = []
         }
         
