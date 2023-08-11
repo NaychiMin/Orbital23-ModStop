@@ -3,7 +3,7 @@ import { useTable } from 'react-table';
 import DataTable from 'react-data-table-component';
 import { ThemeContext } from "../context/recContext"
 
-const DataTableExample = ({email}) => {
+const DataTableExample = ({email, coreMods}) => {
 
     const { changed, setChanged } = useContext(ThemeContext);
 
@@ -59,29 +59,6 @@ const DataTableExample = ({email}) => {
                 })
         setChanged(!changed);
     };
-
-    //replace this with new module database
-    const [coreMods, setCoreMods] = useState([]);
-    useEffect(() => {
-        fetch(`${URL}/api/user/moduletable`, {
-            method: "GET"
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                const transformedData = data.map((item, index) => ({
-                    id: index + 1,
-                    module: item.module,
-                    mcs: item.mcs,
-                    semester: item.semester,
-                    name: item.name
-                }));
-                setCoreMods(transformedData);
-                console.log(transformedData)
-            });
-    }, []);
-
-   
 
     const [records, setRecords] = useState([]);
     useEffect(() => {

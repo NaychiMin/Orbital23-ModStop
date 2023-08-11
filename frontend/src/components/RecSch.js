@@ -276,7 +276,7 @@ const RecSch = ({children}) => {
                      {children}
                 </div>
             </div>
-            <DataTableExample email={email}/>
+            <DataTableExample email={email} coreMods={coreMods}/>
            
         </>
         

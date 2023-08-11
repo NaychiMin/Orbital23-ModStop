@@ -13,7 +13,8 @@ import MajorDetails from './pages/MajorDetails';
 import GPASim from './pages/GPASim';
 import { ThemeProvider } from './context/recContext';
 
-export const URL = "https://modstop-backend1.onrender.com";
+//export const URL = "https://modstop-backend1.onrender.com";
+export const URL = "http://localhost:4000";
 
 function App() {
   const {user} = useAuthContext()
