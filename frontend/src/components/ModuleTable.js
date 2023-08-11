@@ -65,9 +65,7 @@ const DataTableExample = ({email, coreMods}) => {
     
 
     const [records, setRecords] = useState([]);
-    useEffect(() => {
-        setRecords(coreMods);
-    }, [coreMods]);
+    setRecords(coreMods)
 
     function handleFilter(event) {
         const newData = coreMods.filter(row => {

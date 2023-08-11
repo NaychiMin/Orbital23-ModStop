@@ -56,7 +56,7 @@ recSchedSchema.statics.addDefault = async function(email, course, track) {
             sem7 = []
             sem8 = []
         } else {
-            sem1 = ["CG1111", "CS1010", "EG1311", "MA1511", "MA1512", "GE"]
+            sem1 = ["CG1111A", "CS1010", "EG1311", "MA1511", "MA1512", "GE"]
             sem2 = ["CG2111A", 'DTK1234', 'MA1508E', 'PF1101', 'GEA1000']
             sem3 = ['CS1231', 'CS2040C', 'GE', 'IE2141', 'ES2631']
             sem4 = ['CG2023', 'CS2113', 'EE2026', 'EE2211', 'EG2501']
